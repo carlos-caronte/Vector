@@ -3,7 +3,7 @@
 **A generic and dynamic container that expands automatically as elements are added, in C programming language.** 
 Vector supports amortized constant time insertion and removal of elements , as well as constant time access. 
 
-C doesn’t allow data types to be passed as parameters. That means a generic container needs to manually manage memory in terms of the client element size, not client data type.
+C doesn’t allow data types to be passed as parameters. That means a generic container needs to manually manage memory in terms of the client element size, not client data type. You can do generic prommaming in c, without to use macros.
 
 Vector is a small standard library and [an easy-to-use C API][embedding]
 
