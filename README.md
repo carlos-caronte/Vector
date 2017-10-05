@@ -66,7 +66,15 @@ Vector is a small standard library and [an easy-to-use C API][embedding]
 
         struc->Destroy(struc);
 ```
-
+**Output**
+```
+*** Struct (product)... remove pattern
+[ product: dvd player 	 price: $195.00 ]
+[ product: matches 	 price: $0.26 ]
+[ product: notebook 	 price: $1690.00 ]
+[ product: plasma tv 	 price: $2860.00 ]
+[ product: smartphone 	 price: $649.99 ]
+```
 **How to Install**
 Prerequisites for installation:
 
