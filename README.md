@@ -38,21 +38,19 @@ Vector is a small standard library and [an easy-to-use C API][embedding]
         size_t i;
         for(i = 0; i < structs_len; i++)
             vector_Insert(struc, &structs[i]);
-
-        puts("*** Struct ...");
-        print_struct_Vector(struc, structs_len);
         
         // Use qsort to order the Vector object
         vector_Sort(struc);
         
-        puts("*** Struct sorting (product)...");
-        print_struct_Vector(struc, structs_len);
         puts("*** Struct (product)... remove pattern");
         
         // Use pattern (fnmatch.h library)
         pattern ="mp*";
+
         status = vector_Remove_Pattern(struc, pattern);
+        
         switch(status) {
+        
             case V_OK :  print_struct_Vector(struc, vector_Len(struc));
                                  break;
             case V_ERR_IS_EMPTY :
@@ -75,6 +73,8 @@ Vector is a small standard library and [an easy-to-use C API][embedding]
 [ product: plasma tv 	 price: $2860.00 ]
 [ product: smartphone 	 price: $649.99 ]
 ```
+
+
 **How to Install**
 Prerequisites for installation:
 
