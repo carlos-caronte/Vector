@@ -10,9 +10,9 @@ Vector is a small standard library and [an easy-to-use C API][embedding]
 **Example**
 
 ```dart
-        /*
-         *                    Remove records with patterns
-         */
+        
+                             Remove records with patterns
+         
 
         struct st_ex structs[] =
                                         {{"mp3 player", 299.0f},
