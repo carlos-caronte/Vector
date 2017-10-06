@@ -2,7 +2,7 @@
  * File:   vector.h
  * Author: jcr
  *
- * Created on 29 September, 2017
+ * Created on 6 October, 2017
  */
 /*
  * Copyright (C) 2017 Juan Carlos Rey <carlos.caronte@gmail.com>
@@ -29,64 +29,71 @@
 #include<stdbool.h>
 
 /**
- * @brief                   A generic and dynamic container that expands
- *                              automatically as elements are added.
-
- *                              The library supports amortized constant time
- *                              insertion and removal of elements , as well as
- *                              constant time access.
+ * @brief     A generic and dynamic container that expands automatically
+ *              as elements are added.
  *
-  *                              Memory leaks free. If one function in the library
- *                              creates a pointer to Heap, then the library supplies
- *                              a function to free it.
+ *              The library supports amortized constant time insertion and
+ *              removal of elements , as well as constant time access.
+ * *
+ *              The object provided by the Vector library is an array type
+ *              container that:
  *
- *                              The restriction in C to use generic container is
- *                              based on this language does not allow data types
- *                              to be passed as parameters. That means a generic
- *                              container needs to manually manage memory in
- *                              terms of the client element size, not client
- *                              data type.
+ *              1. It only must contain addresses of HEAP.
+ *                  The insertion must be done  by calling the Memory
+ *                  Manager, that is: any new insertion will have
+ *                  to be done with pointers to HEAP.
  *
- * The object provided by the Vector library is an array type container that:
+ *               2. Resides in contiguous memory, accessible by
+ *                   arithmetic of pointers
  *
- * 1. It only contains addresses, either STACK or HEAP.
- * 2. Resides in contiguous memory, accessible by arithmetic of pointers
- * 3. It is generic: it supports all the types supported by the compiler, given
- * which identifies the information not by its type, but by its size
- * 4. He resides in HEAP, already has 0 or more elements.
- * 5. It is self-expanding: doubles its capacity automatically if the
- * insertion of a new element requires it
- * 6. The library provides insertion of items from file. The insertion
- * is done by calling the Memory Manager, that is: if they are inserted
- * elements from file any new insertion will have to be done with
- * pointers to HEAP.
- * 7. Garbage collector
+ *               3. It is generic: it supports any types: we identifie the
+ *                   information not by its type, but by its size
  *
- * The insertion of elements is always by reference. If the item is
- * creates in main, (resides in STACK) the pointer inserted in the object is
- * release when the application finishes. There is nothing to free.
- * Now, if you create the element by calling the memory manager (calloc,
- * malloc, ...) then the pointer resides in HEAP, and must be released before
- * application has finished.
+ *               4. The object resides in HEAP
  *
- * The Destroy_pointer function provides this functionality: it first releases all
- * the pointers in HEAP, and then call Destroy, the object's destructor.
- * (garbage collector)
+ *               5. The object is self-expanding: doubles its capacity
+ *                   automatically if the  insertion of a new element
+ *                   requires it
  *
- * This means that either we create data that resides in STACK or
- * we created it by calling the memory manager. If both forms are combined
- * insertion into the object, then we release a STACK pointer with
- * the call to Destroy_pointer, and this will cause a segment violation,
- * or any other undefined behavior. Or, if we do not call
- * Destroy_pointer, we will leave pointers without releasing when our
- * application has returned (memory - leak).
+ *               6. The library provides insertion of items from file.
  *
- * If the insertion is made from function calls, only
- * insert elements whose addresses reside in HEAP, since the
- * space in the stack corresponding to the function is released once it
- * returns, with what we would have in the Vector object stored
- * an erroneous address and the behavior will be undefined.
-
+ *
+ *               The insertion of elements is always by reference. If the item
+ *               were created in main, (reside in STACK) the object pointed by
+ *               our stored direction, is released when the application finishes.
+ *               There is nothing to free.
+ *
+ *               But if you create the element by calling the Memory Manager
+ *               (calloc,  * malloc, ...) then the pointer resides in the HEAP, and
+ *               must be released before application has finished.
+ *
+ *              This means that either we create data that resides in STACK or
+ *              we create it by calling the memory manager. If both forms
+ *              are combined  then we release a STACK direction with the call
+ *              to Destroy, and this will cause a segment violation, or any other
+ *              undefined behavior. Or, if we do not call Destroy, we will leave
+ *              pointers without releasing when our application has returned
+ *              (memory - leak).
+ *
+ *              If the insertion is made from function calls, you must only insert
+ *              elements whose addresses reside in HEAP, since the space in
+ *              the stack corresponding to the function is released once it
+ *              returns.
+ *
+ *              Well, our object only must contain addresses of HEAP.
+ *              The insertion must be done  by calling the Memory Manager
+ *              before. That is: any new insertion will have to be done with
+ *              pointers to HEAP.
+ *
+ *              The contract is:
+ *
+ *              1. Only insert references to HEAP
+ *              2. Who calls the Memory Manager, free the direction stored in
+ *                  the pointer.
+ *
+ *              If we follow the rules, there will be no problem: neither
+ *              memory leak, neither double free.
+ *
  */
 typedef struct Vector{
         int len; /**<  Number of elements in Vector object*/

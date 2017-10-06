@@ -85,9 +85,11 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="vector_8h__dep__incl.png" border="0" usemap="#src_2vector_8hdep" alt=""/></div>
 <map name="src_2vector_8hdep" id="src_2vector_8hdep">
-<area shape="rect" id="node2" href="slice_8c.html" title="src/slice.c" alt="" coords="5,80,88,107"/>
-<area shape="rect" id="node3" href="vector_8c.html" title="src/vector.c" alt="" coords="112,80,203,107"/>
-<area shape="rect" id="node4" href="check__vector_8c.html" title="tests/check_vector.c" alt="" coords="227,80,371,107"/>
+<area shape="rect" id="node2" href="doubles_8c.html" title="examples/doubles.c" alt="" coords="5,80,144,107"/>
+<area shape="rect" id="node3" href="structure_8c.html" title="examples/structure.c" alt="" coords="168,80,312,107"/>
+<area shape="rect" id="node4" href="slice_8c.html" title="src/slice.c" alt="" coords="336,80,419,107"/>
+<area shape="rect" id="node5" href="vector_8c.html" title="src/vector.c" alt="" coords="443,80,533,107"/>
+<area shape="rect" id="node6" href="check__vector_8c.html" title="tests/check_vector.c" alt="" coords="557,80,701,107"/>
 </map>
 </div>
 </div>
@@ -275,24 +277,54 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>A generic and dynamic container that expands automatically as elements are added. </p>
-<p>The library supports amortized constant time insertion and removal of elements , as well as constant time access.</p>
-<p>Memory leaks free. If one function in the library creates a pointer to Heap, then the library supplies a function to free it.</p>
-<p>The restriction in C to use generic container is based on this language does not allow data types to be passed as parameters. That means a generic container needs to manually manage memory in terms of the client element size, not client data type.</p>
-<p>The object provided by the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> library is an array type container that:</p>
-<ol type="1">
-<li>It only contains addresses, either STACK or HEAP.</li>
+<p>The library supports amortized constant time insertion and removal of elements , as well as constant time access.</p><ul>
+<li>The object provided by the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> library is an array type container that:<ol type="1">
+<li>It only must contain addresses of HEAP. The insertion must be done by calling the Memory Manager, that is: any new insertion will have to be done with pointers to HEAP.<ol type="a">
 <li>Resides in contiguous memory, accessible by arithmetic of pointers</li>
-<li>It is generic: it supports all the types supported by the compiler, given which identifies the information not by its type, but by its size</li>
-<li>He resides in HEAP, already has 0 or more elements.</li>
-<li>It is self-expanding: doubles its capacity automatically if the insertion of a new element requires it</li>
-<li>The library provides insertion of items from file. The insertion is done by calling the Memory Manager, that is: if they are inserted elements from file any new insertion will have to be done with pointers to HEAP.</li>
-<li>Garbage collector</li>
+<li>It is generic: it supports any types: we identifie the information not by its type, but by its size</li>
+<li>The object resides in HEAP</li>
+<li>The object is self-expanding: doubles its capacity automatically if the insertion of a new element requires it</li>
+<li>The library provides insertion of items from file.</li>
 </ol>
-<p>The insertion of elements is always by reference. If the item is creates in main, (resides in STACK) the pointer inserted in the object is release when the application finishes. There is nothing to free. Now, if you create the element by calling the memory manager (calloc, malloc, ...) then the pointer resides in HEAP, and must be released before application has finished.</p>
-<p>The Destroy_pointer function provides this functionality: it first releases all the pointers in HEAP, and then call Destroy, the object's destructor. (garbage collector)</p>
-<p>This means that either we create data that resides in STACK or we created it by calling the memory manager. If both forms are combined insertion into the object, then we release a STACK pointer with the call to Destroy_pointer, and this will cause a segment violation, or any other undefined behavior. Or, if we do not call Destroy_pointer, we will leave pointers without releasing when our application has returned (memory - leak).</p>
-<p>If the insertion is made from function calls, only insert elements whose addresses reside in HEAP, since the space in the stack corresponding to the function is released once it returns, with what we would have in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object stored an erroneous address and the behavior will be undefined. </p>
+</li>
+</ol>
+</li>
+</ul>
+<pre class="fragment">          The insertion of elements is always by reference. If the item
+          were created in main, (reside in STACK) the object pointed by
+          our stored direction, is released when the application finishes.
+          There is nothing to free.
 
+          But if you create the element by calling the Memory Manager
+          (calloc,  * malloc, ...) then the pointer resides in the HEAP, and
+          must be released before application has finished.
+
+         This means that either we create data that resides in STACK or
+         we create it by calling the memory manager. If both forms
+         are combined  then we release a STACK direction with the call
+         to Destroy, and this will cause a segment violation, or any other
+         undefined behavior. Or, if we do not call Destroy, we will leave
+         pointers without releasing when our application has returned
+         (memory - leak).
+
+         If the insertion is made from function calls, you must only insert
+         elements whose addresses reside in HEAP, since the space in
+         the stack corresponding to the function is released once it
+         returns.
+
+         Well, our object only must contain addresses of HEAP.
+         The insertion must be done  by calling the Memory Manager
+         before. That is: any new insertion will have to be done with
+         pointers to HEAP.
+
+         The contract is:
+
+         1. Only insert references to HEAP
+         2. Who calls the Memory Manager, free the direction stored in
+             the pointer.
+
+         If we follow the rules, there will be no problem: neither
+         memory leak, neither double free.</pre> 
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
