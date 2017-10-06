@@ -1,0 +1,174 @@
+.TH "md_README" 3 "Fri Oct 6 2017" "Version 0.1" "Vector" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+md_README\fBVector\fP 
+ \- \fBA contiguous growable generic type array in C programming language\&.\fP
+.PP
+\fBVector\fP supports amortized constant time insertion and removal of elements , as well as constant time access\&.
+.PP
+C doesn’t allow data types to be passed as parameters\&. That means a generic container needs to manually manage memory in terms of the client element size, not client data type\&. You can do generic prommaming in c, without to use macros\&.
+.PP
+\fBVector\fP is a small standard library and \fCan easy-to-use C API\fP
+.PP
+The object provided by the \fBVector\fP library is an array type container that:
+.PP
+\fB1\&.\fP It only contains addresses, either from STACK or from the HEAP\&.
+.PP
+\fB2\&.\fP Resides in contiguous memory, accessible by arithmetic of pointers
+.PP
+\fB3\&.\fP It is generic: it supports all the types supported by the compiler, given which identifies the information not by its type, but by its size
+.PP
+\fB4\&.\fP He resides in HEAP, already has 0 or more elements\&.
+.PP
+\fB5\&.\fP It is self-expanding: doubles its capacity automatically if the insertion of a new element requires it
+.PP
+\fB6\&.\fP The library provides insertion of items from file\&. The insertion is done by calling the Memory Manager, that is: if they are inserted elements from file any new insertion will have to be done with pointers to HEAP\&.
+.PP
+\fB7\&.\fP Garbage collector
+.PP
+The insertion of elements is always \fBby reference\fP\&. If the item is creates in main, (resides in STACK) the pointer inserted in the object is release when the application finishes\&. There is nothing to free\&.
+.PP
+Now, if you create the element by calling the memory manager (calloc, malloc, \&.\&.\&.) then the pointer resides in HEAP, and must be released before application has finished\&.
+.PP
+The Destroy_pointer function provides this functionality: it first releases all the pointers in HEAP, and then call Destroy, the object's destructor\&. (\fBgarbage collector\fP)
+.PP
+This means that either we create data that resides in STACK or we created it by calling the memory manager\&. If both forms are combined insertion into the object, then we release a STACK pointer with the call to Destroy_pointer, and this will cause a segment violation, or any other undefined behavior\&. Or, if we do not call Destroy_pointer, we will leave pointers without releasing when our application has returned (memory - leak)\&.
+.PP
+If the insertion is made from function calls, only insert elements whose addresses reside in HEAP, since the space in the stack corresponding to the function is released once it returns, with what we would have in the \fBVector\fP object stored an erroneous address and the behavior will be undefined\&.
+.PP
+\fBExample\fP
+.PP
+.PP
+.nf
+                     Remove records with patterns
+
+
+struct st_ex structs[] =
+                                {{"mp3 player", 299\&.0f},
+                                    {"plasma tv", 2200\&.0f},
+                                    {"notebook", 1300\&.0f},
+                                    {"mp3 player", 132\&.0f},
+                                    {"smartphone", 499\&.99f},
+                                    {"mp3 player", 600\&.0f},
+                                    {"dvd player", 150\&.0f},
+                                    {"mp3 player", 451\&.0f},
+                                    {"mp4 player", 7211\&.0f},
+                                    {"mp3 ply v", 631\&.0f},
+                                    {"matches", 0\&.2f }};
+
+size_t structs_len = sizeof(structs) / sizeof(struct st_ex);
+
+// Constructor: required size of elements (sizeof(struct st_ex)
+// and order criteria (pointer function "struct_cmp_by_product"
+vector_t *struc = vector_Init(structs_len,
+                            sizeof(struct st_ex),
+                            struct_cmp_by_product);
+
+size_t i;
+for(i = 0; i < structs_len; i++)
+    vector_Insert(struc, &structs[i]);
+
+// Use qsort to order the Vector object
+vector_Sort(struc);
+
+puts("*** Struct (product)\&.\&.\&. remove pattern");
+
+// Use pattern (fnmatch\&.h library)
+pattern ="mp*";
+
+status = vector_Remove_Pattern(struc, pattern);
+
+switch(status) {
+
+    case V_OK :  print_struct_Vector(struc, vector_Len(struc));
+                         break;
+    case V_ERR_IS_EMPTY :
+                        printf("Vector is Empty\n");
+                        break;
+    case V_ERR_VALUE_NOT_FOUND :
+                        printf("Pattern %s has not been found\n", pattern);
+                        break;
+}
+
+
+struc->Destroy(struc);
+.fi
+.PP
+ \fBOutput\fP 
+.PP
+.nf
+*** Struct (product)\&.\&.\&. remove pattern
+[ product: dvd player    price: $195\&.00 ]
+[ product: matches   price: $0\&.26 ]
+[ product: notebook      price: $1690\&.00 ]
+[ product: plasma tv     price: $2860\&.00 ]
+[ product: smartphone    price: $649\&.99 ]
+
+.fi
+.PP
+.PP
+\fBHow to Install\fP Prerequisites for installation: 
+.PP
+.nf
+gcc
+make
+
+.fi
+.PP
+.PP
+\fBPrerequisites for Running Tests:\fP 
+.PP
+.nf
+Check
+
+.fi
+.PP
+.PP
+Steps to run tests: 
+.PP
+.nf
+Download a release from github.
+
+Extract the archive and cd into the extracted directory.
+
+Run this command
+
+.fi
+.PP
+.PP
+\fC\&./configure\fP 
+.PP
+.nf
+If the above command runs successfully, run this
+
+.fi
+.PP
+.PP
+\fCmake\fP 
+.PP
+.nf
+Again, if the above command runs successfully, run this
+
+.fi
+.PP
+.PP
+\fCmake install\fP 
+.PP
+.nf
+If you want to run tests(Optional) to make sure everything works fine, run this
+
+.fi
+.PP
+.PP
+\fCmake check\fP
+.PP
+Now, you can include heade file \fB\fBvector\&.h\fP\fP
+.PP
+For linking the vector library, gcc command would look like, \fCgcc -L/usr/local/lib/vector your_cprog\&.c -lvector\fP
+.PP
+where \fCyour_cprog\&.c\fP is your c program using \fBVector\fP library\&.
+.PP
+By default vector library is installed into \fC/usr/local/lib/vector\fP unless you have changed the prefix while configuring\&.
+.PP
+If you find any bugs or have any feature requests, please create an Issue on Github\&. 

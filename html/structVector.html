@@ -22,7 +22,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Vector
+   &#160;<span id="projectnumber">0.1</span>
    </div>
+   <div id="projectbrief">AcontiguousgrowablegenerictypearrayinC.</div>
   </td>
  </tr>
  </tbody>
@@ -92,9 +94,21 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><p>A generic and dynamic container that expands automatically as elements are added. </p>
 <p>The library supports amortized constant time insertion and removal of elements , as well as constant time access.</p>
 <p>Memory leaks free. If one function in the library creates a pointer to Heap, then the library supplies a function to free it.</p>
-<p>The restriction in C to use generic container is based on this language does not allow data types to be passed as parameters. That means a generic container needs to manually manage memory in terms of the client element size, not client data type. </p>
-
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00050">50</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<p>The restriction in C to use generic container is based on this language does not allow data types to be passed as parameters. That means a generic container needs to manually manage memory in terms of the client element size, not client data type.</p>
+<p>The object provided by the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> library is an array type container that:</p>
+<ol type="1">
+<li>It only contains addresses, either STACK or HEAP.</li>
+<li>Resides in contiguous memory, accessible by arithmetic of pointers</li>
+<li>It is generic: it supports all the types supported by the compiler, given which identifies the information not by its type, but by its size</li>
+<li>He resides in HEAP, already has 0 or more elements.</li>
+<li>It is self-expanding: doubles its capacity automatically if the insertion of a new element requires it</li>
+<li>The library provides insertion of items from file. The insertion is done by calling the Memory Manager, that is: if they are inserted elements from file any new insertion will have to be done with pointers to HEAP.</li>
+<li>Garbage collector</li>
+</ol>
+<p>The insertion of elements is always by reference. If the item is creates in main, (resides in STACK) the pointer inserted in the object is release when the application finishes. There is nothing to free. Now, if you create the element by calling the memory manager (calloc, malloc, ...) then the pointer resides in HEAP, and must be released before application has finished.</p>
+<p>The Destroy_pointer function provides this functionality: it first releases all the pointers in HEAP, and then call Destroy, the object's destructor. (garbage collector)</p>
+<p>This means that either we create data that resides in STACK or we created it by calling the memory manager. If both forms are combined insertion into the object, then we release a STACK pointer with the call to Destroy_pointer, and this will cause a segment violation, or any other undefined behavior. Or, if we do not call Destroy_pointer, we will leave pointers without releasing when our application has returned (memory - leak).</p>
+<p>If the insertion is made from function calls, only insert elements whose addresses reside in HEAP, since the space in the stack corresponding to the function is released once it returns, with what we would have in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object stored an erroneous address and the behavior will be undefined. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a6d49b240ab4a8ccb9b1c7297e78511da"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6d49b240ab4a8ccb9b1c7297e78511da">&#9670;&nbsp;</a></span>capacity</h2>
@@ -108,8 +122,6 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Capacity, in number of elements. Capacity has to be greater than Zero </p>
-
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00055">55</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>
@@ -126,8 +138,6 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Comparing Function pointer </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00070">70</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-
 </div>
 </div>
 <a id="abc10ac30895378eed4f5b07edfdaaf62"></a>
@@ -142,8 +152,6 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Array to hold the information </p>
-
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00053">53</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>
@@ -160,8 +168,6 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Destructor </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00072">72</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-
 </div>
 </div>
 <a id="a7d9780a6781c0d08a0a1b2c614abdd1a"></a>
@@ -176,8 +182,6 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Destructor to use with the function vector_Insert_from_file. It frees the pointers created and then it calls Destroy </p>
-
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00073">73</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>
@@ -196,8 +200,6 @@ Public Attributes</h2></td></tr>
 <p>The constructor requires that the client element size be identified up front.</p>
 <p>Since it doesn’t (and will never) know the true data type, it needs the size so it at least knows how many bytes to replicate behind the scenes with every call to manage data. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00058">58</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-
 </div>
 </div>
 <a id="a55870593ddea19c96770c2521b075059"></a>
@@ -212,8 +214,6 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Number of elements in <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object </p>
-
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00051">51</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>

@@ -1,0 +1,159 @@
+.TH "src/slice.c" 3 "Fri Oct 6 2017" "Version 0.1" "Vector" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/slice.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <assert\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include 'vector\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBst_ex\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBCAPACITY\fP   90000"
+.br
+.ti -1c
+.RI "#define \fBMOD\fP   17"
+.br
+.ti -1c
+.RI "#define \fBRANDOM\fP   1300000"
+.br
+.ti -1c
+.RI "#define \fBN\fP   10000"
+.br
+.ti -1c
+.RI "#define \fBDEN\fP   30000\&.0"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBstruct_map_price_inc\fP (void *o_struct)"
+.br
+.ti -1c
+.RI "void \fBfold_add\fP (void *e1, void *e2, void *result)"
+.br
+.ti -1c
+.RI "int \fBstruct_cmp_by_price\fP (const void *a, const void *b)"
+.br
+.RI "qsort struct comparision function (price float field) "
+.ti -1c
+.RI "int \fBstruct_cmp_by_product\fP (const void *a, const void *b)"
+.br
+.RI "qsort struct comparision function (product C-string field) "
+.ti -1c
+.RI "void \fBprint_int_Vector\fP (\fBvector_t\fP *v, size_t len)"
+.br
+.RI "Integer \fBVector\fP printing function\&. "
+.ti -1c
+.RI "void \fBprint_struct_Vector\fP (\fBvector_t\fP *v, size_t len)"
+.br
+.RI "Struct \fBVector\fP printing function\&. "
+.ti -1c
+.RI "int \fBmain\fP ()"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define CAPACITY   90000"
+
+.SS "#define DEN   30000\&.0"
+
+.SS "#define MOD   17"
+
+.SS "#define N   10000"
+
+.SS "#define RANDOM   1300000"
+
+.SH "Function Documentation"
+.PP 
+.SS "void fold_add (void * e1, void * e2, void * result)"
+
+.SS "int main ()"
+
+.SS "void print_int_Vector (\fBvector_t\fP * v, size_t len)"
+
+.PP
+Integer \fBVector\fP printing function\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t \fBVector\fP object 
+.br
+\fIlen\fP Number of items to print 
+.RE
+.PP
+
+.SS "void print_struct_Vector (\fBvector_t\fP * v, size_t len)"
+
+.PP
+Struct \fBVector\fP printing function\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t \fBVector\fP object 
+.br
+\fIlen\fP Number of items to print\&. 
+.RE
+.PP
+
+.SS "int struct_cmp_by_price (const void * a, const void * b)"
+
+.PP
+qsort struct comparision function (price float field) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP Comparision item 
+.br
+\fIb\fP Comparision item 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Returns negative if b > a and positive if a > b\&. We multiplied result by 100\&.0 to preserve decimal fraction 
+.RE
+.PP
+
+.SS "int struct_cmp_by_product (const void * a, const void * b)"
+
+.PP
+qsort struct comparision function (product C-string field) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP Comparision item 
+.br
+\fIb\fP Comparision item 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The strcmp () function compares the two character strings s1 and s2\&. Returns an integer less than, equal to, or greater than zero if s1 is, respectively, less than, equal to (concordant), or greater than s2\&. 
+.RE
+.PP
+
+.SS "void struct_map_price_inc (void * o_struct)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Vector from the source code\&.

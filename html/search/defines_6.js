@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mod',['MOD',['../slice_8c.html#aca7d5718ab8c38506adb3bef2469b319',1,'MOD():&#160;slice.c'],['../check__vector_8c.html#aca7d5718ab8c38506adb3bef2469b319',1,'MOD():&#160;check_vector.c']]]
+  ['random',['RANDOM',['../slice_8c.html#a724484a23cab81c63f4c7f9136a70371',1,'RANDOM():&#160;slice.c'],['../check__vector_8c.html#a724484a23cab81c63f4c7f9136a70371',1,'RANDOM():&#160;check_vector.c']]]
 ];

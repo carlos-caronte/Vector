@@ -1,0 +1,95 @@
+.TH "Vector" 3 "Fri Oct 6 2017" "Version 0.1" "Vector" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Vector \- A generic and dynamic container that expands automatically as elements are added\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <vector\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBlen\fP"
+.br
+.ti -1c
+.RI "void * \fBdata\fP"
+.br
+.ti -1c
+.RI "int \fBcapacity\fP"
+.br
+.ti -1c
+.RI "size_t \fBele_size\fP"
+.br
+.ti -1c
+.RI "int(* \fBcompar\fP )(const void *, const void *)"
+.br
+.ti -1c
+.RI "void(* \fBDestroy\fP )(struct \fBVector\fP *v)"
+.br
+.ti -1c
+.RI "void(* \fBDestroy_pointer\fP )(struct \fBVector\fP *v)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+A generic and dynamic container that expands automatically as elements are added\&. 
+
+The library supports amortized constant time insertion and removal of elements , as well as constant time access\&.
+.PP
+Memory leaks free\&. If one function in the library creates a pointer to Heap, then the library supplies a function to free it\&.
+.PP
+The restriction in C to use generic container is based on this language does not allow data types to be passed as parameters\&. That means a generic container needs to manually manage memory in terms of the client element size, not client data type\&.
+.PP
+The object provided by the \fBVector\fP library is an array type container that:
+.PP
+.IP "1." 4
+It only contains addresses, either STACK or HEAP\&.
+.IP "2." 4
+Resides in contiguous memory, accessible by arithmetic of pointers
+.IP "3." 4
+It is generic: it supports all the types supported by the compiler, given which identifies the information not by its type, but by its size
+.IP "4." 4
+He resides in HEAP, already has 0 or more elements\&.
+.IP "5." 4
+It is self-expanding: doubles its capacity automatically if the insertion of a new element requires it
+.IP "6." 4
+The library provides insertion of items from file\&. The insertion is done by calling the Memory Manager, that is: if they are inserted elements from file any new insertion will have to be done with pointers to HEAP\&.
+.IP "7." 4
+Garbage collector
+.PP
+.PP
+The insertion of elements is always by reference\&. If the item is creates in main, (resides in STACK) the pointer inserted in the object is release when the application finishes\&. There is nothing to free\&. Now, if you create the element by calling the memory manager (calloc, malloc, \&.\&.\&.) then the pointer resides in HEAP, and must be released before application has finished\&.
+.PP
+The Destroy_pointer function provides this functionality: it first releases all the pointers in HEAP, and then call Destroy, the object's destructor\&. (garbage collector)
+.PP
+This means that either we create data that resides in STACK or we created it by calling the memory manager\&. If both forms are combined insertion into the object, then we release a STACK pointer with the call to Destroy_pointer, and this will cause a segment violation, or any other undefined behavior\&. Or, if we do not call Destroy_pointer, we will leave pointers without releasing when our application has returned (memory - leak)\&.
+.PP
+If the insertion is made from function calls, only insert elements whose addresses reside in HEAP, since the space in the stack corresponding to the function is released once it returns, with what we would have in the \fBVector\fP object stored an erroneous address and the behavior will be undefined\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "int Vector::capacity"
+Capacity, in number of elements\&. Capacity has to be greater than Zero 
+.SS "int(* Vector::compar) (const void *, const void *)"
+Comparing Function pointer 
+.SS "void* Vector::data"
+Array to hold the information 
+.SS "void(* Vector::Destroy) (struct \fBVector\fP *v)"
+Destructor 
+.SS "void(* Vector::Destroy_pointer) (struct \fBVector\fP *v)"
+Destructor to use with the function vector_Insert_from_file\&. It frees the pointers created and then it calls Destroy 
+.SS "size_t Vector::ele_size"
+\fBVector\fP's data type\&. It has to be the returned value of 'sizeof(\fBVector\fP's data type)'
+.PP
+The constructor requires that the client element size be identified up front\&.
+.PP
+Since it doesn’t (and will never) know the true data type, it needs the size so it at least knows how many bytes to replicate behind the scenes with every call to manage data\&. 
+.SS "int Vector::len"
+Number of elements in \fBVector\fP object 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Vector from the source code\&.

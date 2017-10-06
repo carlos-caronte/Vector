@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['len',['len',['../structVector.html#a55870593ddea19c96770c2521b075059',1,'Vector']]],
-  ['lt_5fobjdir',['LT_OBJDIR',['../config_8h.html#ac2d5925d76379847dd9fc4747b061659',1,'config.h']]]
+  ['main',['main',['../slice_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;slice.c'],['../check__vector_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;check_vector.c']]],
+  ['mod',['MOD',['../slice_8c.html#aca7d5718ab8c38506adb3bef2469b319',1,'MOD():&#160;slice.c'],['../check__vector_8c.html#aca7d5718ab8c38506adb3bef2469b319',1,'MOD():&#160;check_vector.c']]]
 ];

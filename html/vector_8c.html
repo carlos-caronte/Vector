@@ -22,7 +22,9 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Vector
+   &#160;<span id="projectnumber">0.1</span>
    </div>
+   <div id="projectbrief">AcontiguousgrowablegenerictypearrayinC.</div>
   </td>
  </tr>
  </tbody>
@@ -82,9 +84,7 @@ Include dependency graph for vector.c:</div>
 <area shape="rect" id="node7" href="vector_8h.html" title="vector.h" alt="" coords="467,80,536,107"/>
 </map>
 </div>
-</div>
-<p><a href="vector_8c_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aa0af95c29255c4d41408a210ffdb7146"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#aa0af95c29255c4d41408a210ffdb7146">vector_Init</a> (int capacity, size_t ele_size, int(*compar)(const void *a, const void *b))</td></tr>
@@ -208,8 +208,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns negative if b &gt; a and positive if a &gt; b. We multiplied result by 1.0 * ACCURACY </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00895">895</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
 </div>
 </div>
 <a id="abeeb8d77d4825620edd6514d4f6a89cc"></a>
@@ -247,8 +245,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns negative if b &gt; a and positive if a &gt; b. We multiplied result by 1.0 * ACCURACY </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00878">878</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -288,8 +284,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns an integer less than, equal to, or greater than zero </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00845">845</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
 </div>
 </div>
 <a id="a31b3a6645d3783e4b707533982c79be9"></a>
@@ -327,8 +321,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The strcmp () function compares the two character strings s1 and s2. Returns an integer less than, equal to, or greater than zero if s1 is, respectively, less than, equal to (concordant), or greater than s2. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00862">862</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -368,8 +360,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK if <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00217">217</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
 </div>
 </div>
 <a id="aa24caeb16230839f74de34ff2e6f9e2a"></a>
@@ -396,8 +386,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The capacity of the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00127">127</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -436,8 +424,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK if <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00230">230</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -484,8 +470,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK if the element was found, or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty or V_ERR_VALUE_NOT_FOUND. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00308">308</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
 </div>
 </div>
 <a id="a317a7692f10d01ec08bbdfbd774d80de"></a>
@@ -531,8 +515,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00370">370</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
 </div>
 </div>
 <a id="a5ed07114d280fdf355614827270a4c23"></a>
@@ -570,8 +552,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK if the element was found, or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty or V_ERR_VALUE_NOT_FOUND. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00494">494</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -618,8 +598,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to vector_t type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00087">87</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
 </div>
 </div>
 <a id="a59a5ae507129c3205fc0c98982121ede"></a>
@@ -656,8 +634,6 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00530">530</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -702,8 +678,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00559">559</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
 </div>
 </div>
 <a id="a85236588e5cf736e71c40248c464fcf3"></a>
@@ -730,8 +704,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Bool </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00157">157</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -770,8 +742,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if v1 and v2 are equals, otherwise False </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00143">143</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -818,8 +788,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00245">245</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
 </div>
 </div>
 <a id="ac474c20c82242888a87102484ff900d1"></a>
@@ -864,8 +832,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00274">274</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -912,8 +878,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00290">290</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
 </div>
 </div>
 <a id="a74cf386822027acb2566bcffe1bbe1c8"></a>
@@ -940,8 +904,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>v-&gt;len, the number of elements in <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00169">169</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -980,8 +942,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00609">609</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -1033,8 +993,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK if the element was found, or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty or V_ERR_VALUE_NOT_FOUND. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00425">425</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
 </div>
 </div>
 <a id="aee81b5e68404e6349c674eb22dd332b7"></a>
@@ -1073,8 +1031,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00184">184</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
 </div>
 </div>
 <a id="a81dd37943b5ec98540f497085553bdc7"></a>
@@ -1112,8 +1068,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00639">639</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -1158,8 +1112,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK if the element was found, or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty or V_ERR_VALUE_NOT_FOUND. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00701">701</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
 </div>
 </div>
 <a id="acb04bc4ba2a1ad6abc827ba1654e23f0"></a>
@@ -1197,8 +1149,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok V_ERR_VALUE_NOT_FOUND if value has not been found </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00736">736</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -1252,8 +1202,6 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>V_OK if slice is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if slice is not ok </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00457">457</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
 </div>
 </div>
 <a id="a0d950527efaf142f1cd604a9f83b0a48"></a>
@@ -1274,8 +1222,6 @@ Functions</h2></td></tr>
 
 <p>Qsort ordering function. </p>
 <dl class="section return"><dt>Returns</dt><dd>V_OK or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00761">761</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -1314,8 +1260,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Position if the element was found, or -1 if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty or the value was not found. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00779">779</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>

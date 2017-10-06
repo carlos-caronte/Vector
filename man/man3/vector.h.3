@@ -1,0 +1,732 @@
+.TH "src/vector.h" 3 "Fri Oct 6 2017" "Version 0.1" "Vector" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/vector.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdbool\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBVector\fP"
+.br
+.RI "A generic and dynamic container that expands automatically as elements are added\&. "
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBACCURACY\fP   1000000"
+.br
+.RI "Accuracy of 6 decimals for sort function double and float\&. "
+.ti -1c
+.RI "#define \fBBUFFER_SIZE\fP   1024"
+.br
+.RI "Length of strings that we want to split in substrings\&. This data is used in the feature Insert_from_file\&. "
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBVector\fP \fBvector_t\fP"
+.br
+.RI "A generic and dynamic container that expands automatically as elements are added\&. "
+.ti -1c
+.RI "typedef enum \fBV_stat\fP \fBv_stat\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBV_stat\fP { \fBV_OK\fP = 0, \fBV_ERR_IS_EMPTY\fP = 1, \fBV_ERR_VALUE_NOT_FOUND\fP = 2, \fBV_ERR_OUT_OF_RANGE\fP = 3, \fBV_ERR_FILE\fP = 4 }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvector_t\fP * \fBvector_Init\fP (int capacity, size_t ele_size, int(*compar)(const void *, const void *))"
+.br
+.ti -1c
+.RI "int \fBvector_Capacity\fP (\fBvector_t\fP *v)"
+.br
+.RI "Returns the capacity of the specified \fBVector\fP\&. The capacity is the maximum number of elements a \fBVector\fP can hold before it has to be resized\&. Capacity has to be greater than Zero\&. "
+.ti -1c
+.RI "bool \fBvector_isEquals\fP (const \fBvector_t\fP *v1, const \fBvector_t\fP *v2)"
+.br
+.RI "It Compares the size of elements of two \fBVector\fP objects (v1, v2) and if are equals, it compares the first n bytes of memory area of v1->data and v2->data\&. "
+.ti -1c
+.RI "bool \fBvector_isEmpty\fP (const \fBvector_t\fP *v)"
+.br
+.RI "Returns True if \fBVector\fP is Empty, that is when its length is equal to Zero\&. "
+.ti -1c
+.RI "int \fBvector_Len\fP (const \fBvector_t\fP *v)"
+.br
+.RI "Returns the number of elements in the \fBVector\fP, the \fBVector\fP's length\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Pos_Err\fP (const \fBvector_t\fP *v, int position)"
+.br
+.RI "Control if supplied position is out of range or \fBVector\fP is empty\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Begin\fP (const \fBvector_t\fP *v, void *item)"
+.br
+.RI "Item at \fBVector\fP's beginning\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_End\fP (const \fBvector_t\fP *v, void *item)"
+.br
+.RI "Item at \fBVector\fP's ending\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Filter\fP (\fBvector_t\fP *v, void *value, \fBvector_t\fP *slice)"
+.br
+.RI "Binary Search of an item\&. It copies in 'vector_t *slice' all the items that match with the supplied value by the client\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Fold\fP (\fBvector_t\fP *v, void(*fn)(void *, void *, void *), void *result)"
+.br
+.RI "A fold function that collects all of the elements in the \fBVector\fP object together\&. For example, if we have an object of [a,b,c\&.\&.\&.] the end result will be (\&.\&.\&.((a+b)+c)+\&.\&.\&.)\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Item\fP (const \fBvector_t\fP *v, void *item, int position)"
+.br
+.RI "Item at position in the \fBVector\fP object\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Iter\fP (\fBvector_t\fP *v, void *item, int index)"
+.br
+.RI "Itertools, returns item at position in the \fBVector\fP object\&. If index==0, begin; if index==-1, end\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Iter_next\fP (\fBvector_t\fP *v, void *item, int index)"
+.br
+.RI "Itertools, returns Item at index+1 in the \fBVector\fP object\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Pattern\fP (\fBvector_t\fP *v, const char *pattern, \fBvector_t\fP *slice)"
+.br
+.RI "Returns the strings that matches the pattern in one slice\&. In this case, the search is, at least, Big-O lineal time of complexity\&. We use the C's library 'fnmatch' to pattern matching\&. The pattern may include the following special characters: "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Slice\fP (const \fBvector_t\fP *v, \fBvector_t\fP *slice, int position, int lenght)"
+.br
+.RI "Slice of items from the \fBVector\fP object\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Has\fP (\fBvector_t\fP *v, void *value)"
+.br
+.RI "Binary Search of an item\&. It uses qsort\&. "
+.ti -1c
+.RI "void \fBvector_Insert\fP (\fBvector_t\fP *v, void const *item)"
+.br
+.RI "Insert (an item of data) at the end of \fBVector\fP object\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Insert_from_file\fP (\fBvector_t\fP *v, const char *filename, const char delimiter)"
+.br
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Map\fP (\fBvector_t\fP *v, void(*fn)(void *))"
+.br
+.RI "Applies the function fn to each element of the \fBVector\fP\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Remove\fP (\fBvector_t\fP *v, int position)"
+.br
+.RI "Remove (an item of data ) from the \fBVector\fP object\&. We move contigous memory from (position + 1) until (v->len -1) to position\&. There is not empty spaces inter records, and v->len now is len - 1\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Remove_value\fP (\fBvector_t\fP *v, void *value)"
+.br
+.RI "Remove one item of data from the \fBVector\fP object\&. We call \fBvector_Remove()\fP function to remove the item\&. "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Remove_Pattern\fP (\fBvector_t\fP *v, const char *pattern)"
+.br
+.RI "Remove all the strings that matches the pattern from the \fBVector\fP object\&. We call \fBvector_Remove()\fP to remove each record\&. We use the C's library 'fnmatch' to pattern matching\&. The pattern may include the following special characters: "
+.ti -1c
+.RI "\fBv_stat\fP \fBvector_Sort\fP (\fBvector_t\fP *v)"
+.br
+.RI "Qsort ordering function\&. "
+.ti -1c
+.RI "int \fBvector_Value\fP (\fBvector_t\fP *v, void *value)"
+.br
+.RI "Binary Search of an item\&. It uses qsort\&. "
+.ti -1c
+.RI "int \fBfloat_cmp\fP (const void *a, const void *b)"
+.br
+.RI "qsort float comparision function "
+.ti -1c
+.RI "int \fBint_cmp\fP (const void *a, const void *b)"
+.br
+.RI "qsort int comparision function "
+.ti -1c
+.RI "int \fBstring_cmp\fP (const void *a, const void *b)"
+.br
+.RI "qsort strings comparision function "
+.ti -1c
+.RI "int \fBdouble_cmp\fP (const void *a, const void *b)"
+.br
+.RI "qsort double comparision function "
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define ACCURACY   1000000"
+
+.PP
+Accuracy of 6 decimals for sort function double and float\&. 
+.SS "#define BUFFER_SIZE   1024"
+
+.PP
+Length of strings that we want to split in substrings\&. This data is used in the feature Insert_from_file\&. 
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef enum \fBV_stat\fP \fBv_stat\fP"
+
+.SS "typedef struct \fBVector\fP  \fBvector_t\fP"
+
+.PP
+A generic and dynamic container that expands automatically as elements are added\&. The library supports amortized constant time insertion and removal of elements , as well as constant time access\&.
+.PP
+Memory leaks free\&. If one function in the library creates a pointer to Heap, then the library supplies a function to free it\&.
+.PP
+The restriction in C to use generic container is based on this language does not allow data types to be passed as parameters\&. That means a generic container needs to manually manage memory in terms of the client element size, not client data type\&.
+.PP
+The object provided by the \fBVector\fP library is an array type container that:
+.PP
+.IP "1." 4
+It only contains addresses, either STACK or HEAP\&.
+.IP "2." 4
+Resides in contiguous memory, accessible by arithmetic of pointers
+.IP "3." 4
+It is generic: it supports all the types supported by the compiler, given which identifies the information not by its type, but by its size
+.IP "4." 4
+He resides in HEAP, already has 0 or more elements\&.
+.IP "5." 4
+It is self-expanding: doubles its capacity automatically if the insertion of a new element requires it
+.IP "6." 4
+The library provides insertion of items from file\&. The insertion is done by calling the Memory Manager, that is: if they are inserted elements from file any new insertion will have to be done with pointers to HEAP\&.
+.IP "7." 4
+Garbage collector
+.PP
+.PP
+The insertion of elements is always by reference\&. If the item is creates in main, (resides in STACK) the pointer inserted in the object is release when the application finishes\&. There is nothing to free\&. Now, if you create the element by calling the memory manager (calloc, malloc, \&.\&.\&.) then the pointer resides in HEAP, and must be released before application has finished\&.
+.PP
+The Destroy_pointer function provides this functionality: it first releases all the pointers in HEAP, and then call Destroy, the object's destructor\&. (garbage collector)
+.PP
+This means that either we create data that resides in STACK or we created it by calling the memory manager\&. If both forms are combined insertion into the object, then we release a STACK pointer with the call to Destroy_pointer, and this will cause a segment violation, or any other undefined behavior\&. Or, if we do not call Destroy_pointer, we will leave pointers without releasing when our application has returned (memory - leak)\&.
+.PP
+If the insertion is made from function calls, only insert elements whose addresses reside in HEAP, since the space in the stack corresponding to the function is released once it returns, with what we would have in the \fBVector\fP object stored an erroneous address and the behavior will be undefined\&. 
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBV_stat\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIV_OK \fP\fP
+.TP
+\fB\fIV_ERR_IS_EMPTY \fP\fP
+.TP
+\fB\fIV_ERR_VALUE_NOT_FOUND \fP\fP
+.TP
+\fB\fIV_ERR_OUT_OF_RANGE \fP\fP
+.TP
+\fB\fIV_ERR_FILE \fP\fP
+.SH "Function Documentation"
+.PP 
+.SS "int double_cmp (const void * a, const void * b)"
+
+.PP
+qsort double comparision function 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP Comparision item 
+.br
+\fIb\fP Comparision item 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Returns negative if b > a and positive if a > b\&. We multiplied result by 1\&.0 * ACCURACY 
+.RE
+.PP
+
+.SS "int float_cmp (const void * a, const void * b)"
+
+.PP
+qsort float comparision function 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP Comparision item 
+.br
+\fIb\fP Comparision item 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Returns negative if b > a and positive if a > b\&. We multiplied result by 1\&.0 * ACCURACY 
+.RE
+.PP
+
+.SS "int int_cmp (const void * a, const void * b)"
+
+.PP
+qsort int comparision function 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP Comparision item 
+.br
+\fIb\fP Comparision item 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Returns an integer less than, equal to, or greater than zero 
+.RE
+.PP
+
+.SS "int string_cmp (const void * a, const void * b)"
+
+.PP
+qsort strings comparision function 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP Comparision item 
+.br
+\fIb\fP Comparision item 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The strcmp () function compares the two character strings s1 and s2\&. Returns an integer less than, equal to, or greater than zero if s1 is, respectively, less than, equal to (concordant), or greater than s2\&. 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Begin (const \fBvector_t\fP * v, void * item)"
+
+.PP
+Item at \fBVector\fP's beginning\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type variable 
+.br
+\fIitem\fP To copy the value found at searched position 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK if \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is empty 
+.RE
+.PP
+
+.SS "int vector_Capacity (\fBvector_t\fP * v)"
+
+.PP
+Returns the capacity of the specified \fBVector\fP\&. The capacity is the maximum number of elements a \fBVector\fP can hold before it has to be resized\&. Capacity has to be greater than Zero\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP \fBVector\fP object whose capacity is being returned 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The capacity of the \fBVector\fP object 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_End (const \fBvector_t\fP * v, void * item)"
+
+.PP
+Item at \fBVector\fP's ending\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type variable 
+.br
+\fIitem\fP To copy the value found at searched position 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK if \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is empty 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Filter (\fBvector_t\fP * v, void * value, \fBvector_t\fP * slice)"
+
+.PP
+Binary Search of an item\&. It copies in 'vector_t *slice' all the items that match with the supplied value by the client\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP A pointer to vector_t objet 
+.br
+\fIvalue\fP Item searched 
+.br
+\fIslice\fP Pointer to vector_t object which will collect all the items that match with the supplied value by the client\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND\&. 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Fold (\fBvector_t\fP * v, void(*)(void *, void *, void *) fn, void * result)"
+
+.PP
+A fold function that collects all of the elements in the \fBVector\fP object together\&. For example, if we have an object of [a,b,c\&.\&.\&.] the end result will be (\&.\&.\&.((a+b)+c)+\&.\&.\&.)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP The \fBVector\fP on which this operation is performed 
+.br
+\fIfn\fP The operation function that is to be invoked on each element 
+.br
+\fIresult\fP The pointer which will collect the end result 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK V_IS_EMPTY if the \fBVector\fP Object is empty 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Has (\fBvector_t\fP * v, void * value)"
+
+.PP
+Binary Search of an item\&. It uses qsort\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP A pointer to vector_t objet 
+.br
+\fIvalue\fP Item searched 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND\&. 
+.RE
+.PP
+
+.SS "\fBvector_t\fP* vector_Init (int capacity, size_t ele_size, int(*)(const void *, const void *) compar)"
+
+.SS "void vector_Insert (\fBvector_t\fP * v, void const * item)"
+
+.PP
+Insert (an item of data) at the end of \fBVector\fP object\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type variable 
+.br
+\fIitem\fP Value to insert in \fBVector\fP object 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Insert_from_file (\fBvector_t\fP * v, const char * filename, const char delimiter)"
+
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP 
+.br
+\fIfilename\fP 
+.br
+\fIdelimiter\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+.RE
+.PP
+
+.SS "bool vector_isEmpty (const \fBvector_t\fP * v)"
+
+.PP
+Returns True if \fBVector\fP is Empty, that is when its length is equal to Zero\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Bool 
+.RE
+.PP
+
+.SS "bool vector_isEquals (const \fBvector_t\fP * v1, const \fBvector_t\fP * v2)"
+
+.PP
+It Compares the size of elements of two \fBVector\fP objects (v1, v2) and if are equals, it compares the first n bytes of memory area of v1->data and v2->data\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv1\fP A vector object 
+.br
+\fIv2\fP A vector object 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+True, if v1 and v2 are equals, otherwise False 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Item (const \fBvector_t\fP * v, void * item, int position)"
+
+.PP
+Item at position in the \fBVector\fP object\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type variable 
+.br
+\fIitem\fP To copy the value found at searched position 
+.br
+\fIposition\fP Position to search 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK if position is correct and \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is empty V_ERR_OUT_OF_RANGE if position is not ok 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Iter (\fBvector_t\fP * v, void * item, int index)"
+
+.PP
+Itertools, returns item at position in the \fBVector\fP object\&. If index==0, begin; if index==-1, end\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type variable 
+.br
+\fIitem\fP To copy the value found at searched position 
+.br
+\fIindex\fP Position to search 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK if position is correct and \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is empty V_ERR_OUT_OF_RANGE if position is not ok 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Iter_next (\fBvector_t\fP * v, void * item, int index)"
+
+.PP
+Itertools, returns Item at index+1 in the \fBVector\fP object\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type variable 
+.br
+\fIitem\fP To copy the value found at searched position 
+.br
+\fIindex\fP Position to search 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK if position is correct and \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is empty V_ERR_OUT_OF_RANGE if position is not ok 
+.RE
+.PP
+
+.SS "int vector_Len (const \fBvector_t\fP * v)"
+
+.PP
+Returns the number of elements in the \fBVector\fP, the \fBVector\fP's length\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+v->len, the number of elements in \fBVector\fP 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Map (\fBvector_t\fP * v, void(*)(void *) fn)"
+
+.PP
+Applies the function fn to each element of the \fBVector\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP \fBVector\fP object on which this operation is performed 
+.br
+\fIfn\fP Operation function that is to be invoked on each \fBVector\fP element 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK or V_IS_EMPTY if the \fBVector\fP Object is empty 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Pattern (\fBvector_t\fP * v, const char * pattern, \fBvector_t\fP * slice)"
+
+.PP
+Returns the strings that matches the pattern in one slice\&. In this case, the search is, at least, Big-O lineal time of complexity\&. We use the C's library 'fnmatch' to pattern matching\&. The pattern may include the following special characters: 
+.IP "\(bu" 2
+Matches zero of more characters\&. ? Matches exactly one character\&.
+.PP
+.PP
+[\&.\&.\&.] Matches one character if it's in a range of characters\&. If the first character is `!', matches if the character is not in the range\&. Between the brackets, the range is specified by listing the characters that are in the range, or two characters separated by `-' to indicate all characters in that range\&. For example, `[a-d]' matches `a', `b', `c', or `d'\&. If you want to include the literal `-' in the range, make it the first character, like in `[-afz]'\&.
+.PP
+\\ Causes the next character to not be treated as a wildcard\&. For example, `*' matches an asterisk\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP A pointer to vector_t objet 
+.br
+\fIpattern\fP Pattern searched\&. It is a string\&. 
+.br
+\fIslice\fP \fBVector\fP object pointer to return the slice 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND\&. 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Pos_Err (const \fBvector_t\fP * v, int position)"
+
+.PP
+Control if supplied position is out of range or \fBVector\fP is empty\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type variable 
+.br
+\fIposition\fP Position to calculate 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK if position is correct and \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is empty V_ERR_OUT_OF_RANGE if position is not ok 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Remove (\fBvector_t\fP * v, int position)"
+
+.PP
+Remove (an item of data ) from the \fBVector\fP object\&. We move contigous memory from (position + 1) until (v->len -1) to position\&. There is not empty spaces inter records, and v->len now is len - 1\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type variable 
+.br
+\fIposition\fP Position to remove in \fBVector\fP object 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK if position is correct and \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is empty V_ERR_OUT_OF_RANGE if position is not ok 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Remove_Pattern (\fBvector_t\fP * v, const char * pattern)"
+
+.PP
+Remove all the strings that matches the pattern from the \fBVector\fP object\&. We call \fBvector_Remove()\fP to remove each record\&. We use the C's library 'fnmatch' to pattern matching\&. The pattern may include the following special characters: 
+.IP "\(bu" 2
+Matches zero of more characters\&. ? Matches exactly one character\&.
+.PP
+.PP
+[\&.\&.\&.] Matches one character if it's in a range of characters\&. If the first character is `!', matches if the character is not in the range\&. Between the brackets, the range is specified by listing the characters that are in the range, or two characters separated by `-' to indicate all characters in that range\&. For example, `[a-d]' matches `a', `b', `c', or `d'\&. If you want to include the literal `-' in the range, make it the first character, like in `[-afz]'\&.
+.PP
+\\ Causes the next character to not be treated as a wildcard\&. For example, `*' matches an asterisk\&.
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP A pointer to vector_t objet 
+.br
+\fIpattern\fP Pattern searched\&. It is a string\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND\&. 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Remove_value (\fBvector_t\fP * v, void * value)"
+
+.PP
+Remove one item of data from the \fBVector\fP object\&. We call \fBvector_Remove()\fP function to remove the item\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type variable 
+.br
+\fIvalue\fP Value searched to remove 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK if position is correct and \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is empty V_ERR_OUT_OF_RANGE if position is not ok V_ERR_VALUE_NOT_FOUND if value has not been found 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Slice (const \fBvector_t\fP * v, \fBvector_t\fP * slice, int from, int to)"
+
+.PP
+Slice of items from the \fBVector\fP object\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type variable 
+.br
+\fIfrom\fP Initial position\&. From >= 0; 
+.br
+\fIto\fP Final position\&. To > From; 
+.br
+\fIslice\fP Pointer to new vector_t type variable 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK if slice is correct and \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is empty V_ERR_OUT_OF_RANGE if slice is not ok 
+.RE
+.PP
+
+.SS "\fBv_stat\fP vector_Sort (\fBvector_t\fP * v)"
+
+.PP
+Qsort ordering function\&. 
+.PP
+\fBReturns:\fP
+.RS 4
+V_OK or V_IS_EMPTY if the \fBVector\fP Object is empty 
+.RE
+.PP
+
+.SS "int vector_Value (\fBvector_t\fP * v, void * value)"
+
+.PP
+Binary Search of an item\&. It uses qsort\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP A pointer to vector_t objet 
+.br
+\fIvalue\fP Item searched 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Position if the element was found, or -1 if the \fBVector\fP Object is empty or the value was not found\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Vector from the source code\&.
