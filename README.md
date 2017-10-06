@@ -8,6 +8,54 @@ C doesn’t allow data types to be passed as parameters. That means a generic co
 
 Vector is a small standard library and [an easy-to-use C API][embedding]
 
+The object provided by the Vector library is an array type container that:
+
+**1.** It only contains addresses, either from STACK or from the HEAP.
+
+**2.** Resides in contiguous memory, accessible by arithmetic of pointers
+
+**3.** It is generic: it supports all the types supported by the compiler, given
+which identifies the information not by its type, but by its size
+
+**4.** He resides in HEAP, already has 0 or more elements.
+
+**5.** It is self-expanding: doubles its capacity automatically if the
+insertion of a new element requires it
+
+**6.** The library provides insertion of items from file. The insertion
+is done by calling the Memory Manager, that is: if they are inserted
+elements from file any new insertion will have to be done with
+pointers to HEAP.
+
+**7.** Garbage collector
+
+The insertion of elements is always **by reference**. If the item is
+creates in main, (resides in STACK) the pointer inserted in the object is
+release when the application finishes. There is nothing to free.
+
+Now, if you create the element by calling the memory manager (calloc,
+malloc, ...) then the pointer resides in HEAP, and must be released before
+application has finished.
+
+The Destroy_pointer function provides this functionality: it first releases all
+the pointers in HEAP, and then call Destroy, the object's destructor.
+(**garbage collector**)
+
+This means that either we create data that resides in STACK or 
+we created it by calling the memory manager. If both forms are combined
+insertion into the object, then we release a STACK pointer with
+the call to Destroy_pointer, and this will cause a segment violation,
+or any other undefined behavior. Or, if we do not call
+Destroy_pointer, we will leave pointers without releasing when our
+application has returned (memory - leak).
+
+If the insertion is made from function calls, only
+insert elements whose addresses reside in HEAP, since the
+space in the stack corresponding to the function is released once it
+returns, with what we would have in the Vector object stored
+an erroneous address and the behavior will be undefined.
+
+
 **Example**
 
 ```dart
