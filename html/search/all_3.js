@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['data',['data',['../structVector.html#abc10ac30895378eed4f5b07edfdaaf62',1,'Vector']]],
-  ['den',['DEN',['../doubles_8c.html#a9a5932930b25c59af9b01c4cc7fcbec8',1,'DEN():&#160;doubles.c'],['../check__vector_8c.html#a9a5932930b25c59af9b01c4cc7fcbec8',1,'DEN():&#160;check_vector.c']]],
-  ['destroy',['Destroy',['../structVector.html#a780c3355a80ed925d0e2255f67027a63',1,'Vector']]],
-  ['destroy_5fpointer',['Destroy_pointer',['../structVector.html#a7d9780a6781c0d08a0a1b2c614abdd1a',1,'Vector']]],
-  ['double_5fcmp',['double_cmp',['../vector_8c.html#aaedb17f00b23fc8b1250f6f76611eb83',1,'double_cmp(const void *a, const void *b):&#160;vector.c'],['../vector_8h.html#aaedb17f00b23fc8b1250f6f76611eb83',1,'double_cmp(const void *a, const void *b):&#160;vector.c']]],
-  ['doubles_2ec',['doubles.c',['../doubles_8c.html',1,'']]]
+  ['capacity',['capacity',['../structVector.html#a6d49b240ab4a8ccb9b1c7297e78511da',1,'Vector::capacity()'],['../doubles_8c.html#a91fbe6020a4bbd73084f0681b9092479',1,'CAPACITY():&#160;doubles.c'],['../check__vector_8c.html#a91fbe6020a4bbd73084f0681b9092479',1,'CAPACITY():&#160;check_vector.c']]],
+  ['check_5fvector_2ec',['check_vector.c',['../check__vector_8c.html',1,'']]],
+  ['compar',['compar',['../structVector.html#a878f53535bc6a2f2dcbed86cc993216c',1,'Vector']]]
 ];

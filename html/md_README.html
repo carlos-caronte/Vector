@@ -67,66 +67,24 @@ $(function() {
 <div class="textblock"><p><b>A contiguous growable generic type array in C programming language.</b></p>
 <p><a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> supports amortized constant time insertion and removal of elements , as well as constant time access.</p>
 <p>C doesn’t allow data types to be passed as parameters. That means a generic container needs to manually manage memory in terms of the client element size, not client data type. You can do generic prommaming in c, without to use macros.</p>
-<p><a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is a small standard library and <a href="https://carlos-caronte.github.io/Vector/">an easy-to-use C API</a> </p><pre class="fragment">           The object provided by the Vector library is an array type
-           container that:
-
-           1. It only must contain addresses of HEAP.
-               The insertion must be done  by calling the Memory
-               Manager, that is: any new insertion will have
-               to be done with pointers to HEAP.
-
-            2. Resides in contiguous memory, accessible by
-                arithmetic of pointers
-
-            3. It is generic: it supports any types: we identifie the
-                information not by its type, but by its size
-
-            4. The object resides in HEAP
-
-            5. The object is self-expanding: doubles its capacity
-                automatically if the  insertion of a new element
-                requires it
-
-            6. The library provides insertion of items from file.
-
-
-            The insertion of elements is always by reference. If the item
-            were created in main, (reside in STACK) the object pointed by
-            our stored direction, is released when the application finishes.
-            There is nothing to free.
-
-            But if you create the element by calling the Memory Manager
-            (calloc,  * malloc, ...) then the pointer resides in the HEAP, and
-            must be released before application has finished.
-
-           This means that either we create data that resides in STACK or
-           we create it by calling the memory manager. If both forms
-           are combined  then we release a STACK direction with the call
-           to Destroy, and this will cause a segment violation, or any other
-           undefined behavior. Or, if we do not call Destroy, we will leave
-           pointers without releasing when our application has returned
-           (memory - leak).
-
-           If the insertion is made from function calls, you must only insert
-           elements whose addresses reside in HEAP, since the space in
-           the stack corresponding to the function is released once it
-           returns.
-
-           Well, our object only must contain addresses of HEAP.
-           The insertion must be done  by calling the Memory Manager
-           before. That is: any new insertion will have to be done with
-           pointers to HEAP.
-
-           The contract is:
-
-           1.Insert only references to HEAP
-           2. Who calls the Memory Manager, free the direction stored in
-               the pointer.
-
-           If we follow the rules, there will be no problem: neither
-           memory leak, neither double free.
-</pre><p><b>Example</b></p>
-<div class="fragment"><div class="line">                     Remove records with patterns</div><div class="line"></div><div class="line"></div><div class="line">struct st_ex structs[] =</div><div class="line">                                {{&quot;mp3 player&quot;, 299.0f},</div><div class="line">                                    {&quot;plasma tv&quot;, 2200.0f},</div><div class="line">                                    {&quot;notebook&quot;, 1300.0f},</div><div class="line">                                    {&quot;mp3 player&quot;, 132.0f},</div><div class="line">                                    {&quot;smartphone&quot;, 499.99f},</div><div class="line">                                    {&quot;mp3 player&quot;, 600.0f},</div><div class="line">                                    {&quot;dvd player&quot;, 150.0f},</div><div class="line">                                    {&quot;mp3 player&quot;, 451.0f},</div><div class="line">                                    {&quot;mp4 player&quot;, 7211.0f},</div><div class="line">                                    {&quot;mp3 ply v&quot;, 631.0f},</div><div class="line">                                    {&quot;matches&quot;, 0.2f }};</div><div class="line"></div><div class="line">size_t structs_len = sizeof(structs) / sizeof(struct st_ex);</div><div class="line"></div><div class="line">// Constructor: required size of elements (sizeof(struct st_ex)</div><div class="line">// and order criteria (pointer function &quot;struct_cmp_by_product&quot;</div><div class="line">vector_t *struc = vector_Init(structs_len,</div><div class="line">                            sizeof(struct st_ex),</div><div class="line">                            struct_cmp_by_product);</div><div class="line"></div><div class="line">size_t i;</div><div class="line">for(i = 0; i &lt; structs_len; i++)</div><div class="line">    vector_Insert(struc, &amp;structs[i]);</div><div class="line"></div><div class="line">// Use qsort to order the Vector object</div><div class="line">vector_Sort(struc);</div><div class="line"></div><div class="line">puts(&quot;*** Struct (product)... remove pattern&quot;);</div><div class="line"></div><div class="line">// Use pattern (fnmatch.h library)</div><div class="line">pattern =&quot;mp*&quot;;</div><div class="line"></div><div class="line">status = vector_Remove_Pattern(struc, pattern);</div><div class="line"></div><div class="line">switch(status) {</div><div class="line"></div><div class="line">    case V_OK :  print_struct_Vector(struc, vector_Len(struc));</div><div class="line">                         break;</div><div class="line">    case V_ERR_IS_EMPTY :</div><div class="line">                        printf(&quot;Vector is Empty\n&quot;);</div><div class="line">                        break;</div><div class="line">    case V_ERR_VALUE_NOT_FOUND :</div><div class="line">                        printf(&quot;Pattern %s has not been found\n&quot;, pattern);</div><div class="line">                        break;</div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line">struc-&gt;Destroy(struc);</div></div><!-- fragment --><p> <b>Output</b> </p><div class="fragment"><div class="line">*** Struct (product)... remove pattern</div><div class="line">[ product: dvd player    price: $195.00 ]</div><div class="line">[ product: matches   price: $0.26 ]</div><div class="line">[ product: notebook      price: $1690.00 ]</div><div class="line">[ product: plasma tv     price: $2860.00 ]</div><div class="line">[ product: smartphone    price: $649.99 ]</div></div><!-- fragment --><p><b>How to Install</b> Prerequisites for installation: </p><pre class="fragment">gcc
+<p><a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is a small standard library and <a href="https://carlos-caronte.github.io/Vector/">an easy-to-use C API</a></p>
+<p>The object provided by the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> library is an array type container that:</p>
+<ol type="1">
+<li>It only must contain addresses of HEAP. The insertion must be done by calling the Memory Manager, that is: any new insertion will have to be done with pointers to HEAP.</li>
+<li>Resides in contiguous memory, accessible by arithmetic of pointers</li>
+<li>It is generic: it supports any types: we identifie the information not by its type, but by its size</li>
+<li>The object resides in HEAP</li>
+<li>The object is self-expanding: doubles its capacity automatically if the insertion of a new element requires it</li>
+<li>The library provides insertion of items from file.</li>
+</ol>
+<p>The contract is:</p>
+<ol type="1">
+<li>Insert only references to HEAP</li>
+<li>Who calls the Memory Manager, free the direction stored in the pointer.</li>
+</ol>
+<p>If we follow the rules, there will be no problem: neither memory leak, neither corruption memory.</p>
+<p><b>Example</b></p>
+<div class="fragment"><div class="line">        int structs_len = 10;</div><div class="line"></div><div class="line">        // The client calls Memory Manager</div><div class="line">        struct st_ex *structs = calloc(structs_len, sizeof(struct st_ex));</div><div class="line">        structs[0] = (struct st_ex) {&quot;mp3 player&quot;, 299.0f};</div><div class="line">        structs[1] = (struct st_ex) {&quot;plasma tv&quot;, 2200.0f};</div><div class="line">        structs[2] = (struct st_ex) {&quot;notebook&quot;, 1300.0f};</div><div class="line">        structs[3] = (struct st_ex) {&quot;smartphone&quot;, 499.99f};</div><div class="line">        structs[4] = (struct st_ex) {&quot;mp3 player&quot;, 600.0f};</div><div class="line">        structs[5] = (struct st_ex) {&quot;mp3 player&quot;, 451.0f};</div><div class="line">        structs[6] = (struct st_ex) {&quot;mp4 player&quot;, 7211.0f};</div><div class="line">        structs[7] = (struct st_ex) {&quot;dvd player&quot;, 150.0f};</div><div class="line">        structs[8] = (struct st_ex) {&quot;mp3 ply v&quot;, 631.0f};</div><div class="line">        structs[9] = (struct st_ex) {&quot;matches&quot;, 0.2f };</div><div class="line"></div><div class="line">        //Constructor</div><div class="line">        vector_t *struc = vector_Init(structs_len,</div><div class="line">                                    sizeof(struct st_ex),</div><div class="line">                                    struct_cmp_by_product);</div><div class="line"></div><div class="line">        size_t i;</div><div class="line">        v_stat status;</div><div class="line"></div><div class="line">        for(i = 0; i &lt; structs_len; i++)</div><div class="line">            vector_Insert(struc, &amp;structs[i]);</div><div class="line"></div><div class="line">/*</div><div class="line"> *         struct st_ex buy = {&quot;matches&quot;, 32.0f}</div><div class="line"> *         vector_Insert(struc, &amp;pepito);</div><div class="line"> *         It will generate a warning. &#39;buy&#39; is in the stack</div><div class="line"> */</div><div class="line"></div><div class="line"></div><div class="line">    /***************************************************************</div><div class="line">     *</div><div class="line">     *                          STRUCT SEARCHING: Filter, Has, Pattern</div><div class="line">     *</div><div class="line">     * *************************************************************/</div><div class="line"></div><div class="line"></div><div class="line">        puts(&quot;*** Struct searching (product)... ordered (by price)&quot;);</div><div class="line"></div><div class="line">        vector_t *searched = vector_Init(structs_len,</div><div class="line">                                            sizeof(struct st_ex),</div><div class="line">                                            struct_cmp_by_price);</div><div class="line"></div><div class="line">        char *found = &quot;mp3 player&quot;;</div><div class="line"></div><div class="line">        // Binary Search of an item. It copies in &#39;searched&#39; all the items that</div><div class="line">        // match with &#39;found&#39;</div><div class="line">        status = vector_Filter(struc, found, searched);</div><div class="line"></div><div class="line">        switch(status) {</div><div class="line">            case V_OK :  print_struct_Vector(searched,</div><div class="line">                                                                vector_Len(searched));</div><div class="line">                                 break;</div><div class="line">            case V_ERR_IS_EMPTY :</div><div class="line">                                printf(&quot;Vector is Empty\n&quot;);</div><div class="line">                                break;</div><div class="line">            case V_ERR_VALUE_NOT_FOUND :</div><div class="line">                                printf(&quot;Item %s has not been found\n&quot;, found);</div><div class="line">                                break;</div><div class="line">            case V_ERR_INVALID_ARGUMENT:</div><div class="line">                                printf(&quot;Invalid arguments\n&quot;);</div><div class="line">                                break;</div><div class="line">        }</div><div class="line"></div><div class="line">        // The client frees its pointers to HEAP</div><div class="line">        free(structs);</div><div class="line"></div><div class="line">        // The library frees its pointers to HEAP</div><div class="line">        struc-&gt;Destroy(struc);</div><div class="line">        searched-&gt;Destroy_slice(searched);</div><div class="line"></div><div class="line">        return 0;</div></div><!-- fragment --><p> <b>How to Install</b> Prerequisites for installation: </p><pre class="fragment">gcc
 make
 </pre><p><b>Prerequisites for Running Tests:</b> </p><pre class="fragment">Check
 </pre><p>Steps to run tests: </p><pre class="fragment">Download a release from github.

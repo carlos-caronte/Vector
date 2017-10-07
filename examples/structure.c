@@ -158,21 +158,20 @@ void print_struct_Vector(vector_t *v,  size_t len)
 int main()
 {
 
-        size_t structs_len = 11;
+        int structs_len = 10;
 
         // The client calls Memory Manager
         struct st_ex *structs = calloc(structs_len, sizeof(struct st_ex));
         structs[0] = (struct st_ex) {"mp3 player", 299.0f};
         structs[1] = (struct st_ex) {"plasma tv", 2200.0f};
         structs[2] = (struct st_ex) {"notebook", 1300.0f};
-        structs[3] = (struct st_ex) {"mp3 player", 132.0f};
-        structs[4] = (struct st_ex) {"smartphone", 499.99f};
-        structs[5] = (struct st_ex) {"mp3 player", 600.0f};
-        structs[6] = (struct st_ex) {"mp3 player", 451.0f};
-        structs[7] = (struct st_ex) {"mp4 player", 7211.0f};
-        structs[8] = (struct st_ex) {"dvd player", 150.0f};
-        structs[9] = (struct st_ex) {"mp3 ply v", 631.0f};
-        structs[10] = (struct st_ex) {"matches", 0.2f };
+        structs[3] = (struct st_ex) {"smartphone", 499.99f};
+        structs[4] = (struct st_ex) {"mp3 player", 600.0f};
+        structs[5] = (struct st_ex) {"mp3 player", 451.0f};
+        structs[6] = (struct st_ex) {"mp4 player", 7211.0f};
+        structs[7] = (struct st_ex) {"dvd player", 150.0f};
+        structs[8] = (struct st_ex) {"mp3 ply v", 631.0f};
+        structs[9] = (struct st_ex) {"matches", 0.2f };
 
 
         vector_t *struc = vector_Init(structs_len,
@@ -180,8 +179,15 @@ int main()
                                     struct_cmp_by_product);
 
         size_t i;
+        v_stat status;
         for(i = 0; i < structs_len; i++)
             vector_Insert(struc, &structs[i]);
+
+/*
+ *         struct st_ex buy = {"matches", 32.0f}
+ *         vector_Insert(struc, &pepito);
+ *         It will generate a warning. 'buy' is in the stack
+ */
 
         puts("*** Struct ...");
         print_struct_Vector(struc, structs_len);
@@ -189,6 +195,8 @@ int main()
         vector_Sort(struc);
         puts("*** Struct sorting (product)...");
         print_struct_Vector(struc, structs_len);
+
+
 
     /***************************************************************
      *
@@ -207,7 +215,7 @@ int main()
 
         // Binary Search of an item. It copies in 'searched' all the items that
         // match with 'found'
-        v_stat status = vector_Filter(struc, found, searched);
+        status = vector_Filter(struc, found, searched);
 
         switch(status) {
             case V_OK :  print_struct_Vector(searched,
@@ -218,6 +226,9 @@ int main()
                                 break;
             case V_ERR_VALUE_NOT_FOUND :
                                 printf("Item %s has not been found\n", found);
+                                break;
+            case V_ERR_INVALID_ARGUMENT:
+                                printf("Invalid arguments\n");
                                 break;
         }
 
@@ -252,60 +263,10 @@ int main()
             case V_ERR_VALUE_NOT_FOUND :
                                 printf("Item %s has not been found\n", found);
                                 break;
+            case V_ERR_INVALID_ARGUMENT:
+                                printf("Invalidd arguments\n");
+                                break;
         }
-
-        searched->Destroy(searched);
-        s_pattern->Destroy(s_pattern);
-
-
-    /***************************************************************
-     *
-     *                                  FOLD, MAP
-     *
-     * *************************************************************/
-
-
-        /*
-         *                                  FOLD
-         */
-        vector_t *fold = vector_Init(10, sizeof(int), int_cmp);
-
-        int a = 1;
-        int b = 78;
-        int c = 12;
-        int d = 2;
-        int e = 8;
-
-        vector_Insert(fold, &a);
-        int result;
-        vector_Fold(fold, fold_add, &result);
-        putchar('\n');
-        puts("--");
-        printf("Fold sums %d and returned %d\n", a, result);
-
-        vector_Insert(fold, &b);
-        vector_Fold(fold, fold_add, &result);
-        printf("Fold sums %d and returned %d\n", b, result);
-
-        vector_Insert(fold, &c);
-        vector_Insert(fold, &d);
-        vector_Insert(fold, &e);
-        vector_Fold(fold, fold_add, &result);
-        printf("Now Fold returns %d\n", result);
-
-        fold->Destroy(fold);
-
-        /*
-         *                                  MAP
-         */
-
-        puts("*** Struct ...");
-        int len = vector_Len(struc);
-        vector_Sort(struc);
-        print_struct_Vector(struc, len);
-        vector_Map(struc, struct_map_price_inc);
-        puts("*** Struct (product)... editing price");
-        print_struct_Vector(struc, len);
 
         /*
          *                    Remove records with patterns
@@ -330,8 +291,10 @@ int main()
         // The client free its pointers to HEAP
         free(structs);
 
-        // The library free its pointers to HEAP
+        // The library free their pointers to HEAP
         struc->Destroy(struc);
+        searched->Destroy_slice(searched);
+        s_pattern->Destroy_slice(s_pattern);
 
         return 0;
 }

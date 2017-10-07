@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mod',['MOD',['../doubles_8c.html#aca7d5718ab8c38506adb3bef2469b319',1,'MOD():&#160;doubles.c'],['../check__vector_8c.html#aca7d5718ab8c38506adb3bef2469b319',1,'MOD():&#160;check_vector.c']]]
+  ['den',['DEN',['../doubles_8c.html#a9a5932930b25c59af9b01c4cc7fcbec8',1,'DEN():&#160;doubles.c'],['../check__vector_8c.html#a9a5932930b25c59af9b01c4cc7fcbec8',1,'DEN():&#160;check_vector.c']]]
 ];

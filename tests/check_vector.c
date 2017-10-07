@@ -63,6 +63,7 @@ START_TEST(int_vector)
 
                 vector_Insert(v, &a[i - 1]);
                 int x = vector_Len(v);
+
                 ck_assert_int_eq(x, i - (i / mod));
 
         }
@@ -105,6 +106,7 @@ START_TEST(float_vector)
                 }
                 vector_Insert(v, &a[i - 1]);
                 v_len = vector_Len(v);
+
                 ck_assert_int_eq(v_len, i - (i / 11));
         }
         vector_Sort(v);
@@ -156,6 +158,7 @@ START_TEST(string_vector)
                 }
                 vector_Insert(v, &a[i - 1]);
                 int x = vector_Len(v);
+
                 ck_assert_int_eq(x, i - (i / mod));
         }
 

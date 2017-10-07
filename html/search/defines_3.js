@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['den',['DEN',['../doubles_8c.html#a9a5932930b25c59af9b01c4cc7fcbec8',1,'DEN():&#160;doubles.c'],['../check__vector_8c.html#a9a5932930b25c59af9b01c4cc7fcbec8',1,'DEN():&#160;check_vector.c']]]
+  ['capacity',['CAPACITY',['../doubles_8c.html#a91fbe6020a4bbd73084f0681b9092479',1,'CAPACITY():&#160;doubles.c'],['../check__vector_8c.html#a91fbe6020a4bbd73084f0681b9092479',1,'CAPACITY():&#160;check_vector.c']]]
 ];

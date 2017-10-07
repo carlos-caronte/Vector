@@ -1,4 +1,4 @@
-.TH "src/vector.h" 3 "Fri Oct 6 2017" "Version 0.1" "Vector" \" -*- nroff -*-
+.TH "src/vector.h" 3 "Sun Oct 8 2017" "Version 0.1" "Vector" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -21,6 +21,9 @@ src/vector.h
 
 .in +1c
 .ti -1c
+.RI "#define \fBMALLOC_CHECK_\fP   2"
+.br
+.ti -1c
 .RI "#define \fBACCURACY\fP   1000000"
 .br
 .RI "Accuracy of 6 decimals for sort function double and float\&. "
@@ -28,6 +31,12 @@ src/vector.h
 .RI "#define \fBBUFFER_SIZE\fP   1024"
 .br
 .RI "Length of strings that we want to split in substrings\&. This data is used in the feature Insert_from_file\&. "
+.ti -1c
+.RI "#define \fB_v_assert\fP(X,  Y,  F,  LINE)"
+.br
+.ti -1c
+.RI "#define \fBv_assert\fP(X,  Y)   \fB_v_assert\fP(X, Y, __FILE__, __LINE__)"
+.br
 .in -1c
 .SS "Typedefs"
 
@@ -44,7 +53,7 @@ src/vector.h
 
 .in +1c
 .ti -1c
-.RI "enum \fBV_stat\fP { \fBV_OK\fP = 0, \fBV_ERR_IS_EMPTY\fP = 1, \fBV_ERR_VALUE_NOT_FOUND\fP = 2, \fBV_ERR_OUT_OF_RANGE\fP = 3, \fBV_ERR_FILE\fP = 4 }"
+.RI "enum \fBV_stat\fP { \fBV_OK\fP = 0, \fBV_ERR_IS_EMPTY\fP = 1, \fBV_ERR_VALUE_NOT_FOUND\fP = 2, \fBV_ERR_OUT_OF_RANGE\fP = 3, \fBV_ERR_FILE\fP = 4, \fBV_ERR_STACK\fP = 5, \fBV_ERR_ALLOCATE_MEMORY\fP = 6, \fBV_ERR_MEMCPY\fP = 7, \fBV_ERR_MEMMOVE\fP = 8, \fBV_ERR_INVALID_ARGUMENT\fP = 9 }"
 .br
 .in -1c
 .SS "Functions"
@@ -114,7 +123,7 @@ src/vector.h
 .br
 .RI "Binary Search of an item\&. It uses qsort\&. "
 .ti -1c
-.RI "void \fBvector_Insert\fP (\fBvector_t\fP *v, void const *item)"
+.RI "void \fBvector_Insert\fP (\fBvector_t\fP *v, void *item)"
 .br
 .RI "Insert (an item of data) at the end of \fBVector\fP object\&. "
 .ti -1c
@@ -163,6 +172,19 @@ src/vector.h
 .in -1c
 .SH "Macro Definition Documentation"
 .PP 
+.SS "#define _v_assert(X, Y, F, LINE)"
+\fBValue:\fP
+.PP
+.nf
+{                                                                                                             \
+    if(!X){                                                                                                   \
+        vector_Abort(                                                                                         \
+                Y,                                                                                            \
+                F,                                                                                            \
+                LINE);                                                                                        \
+    }                                                                                                         \
+}
+.fi
 .SS "#define ACCURACY   1000000"
 
 .PP
@@ -171,6 +193,10 @@ Accuracy of 6 decimals for sort function double and float\&.
 
 .PP
 Length of strings that we want to split in substrings\&. This data is used in the feature Insert_from_file\&. 
+.SS "#define MALLOC_CHECK_   2"
+
+.SS "#define v_assert(X, Y)   \fB_v_assert\fP(X, Y, __FILE__, __LINE__)"
+
 .SH "Typedef Documentation"
 .PP 
 .SS "typedef enum \fBV_stat\fP \fBv_stat\fP"
@@ -255,6 +281,16 @@ The library provides insertion of items from file\&.
 \fB\fIV_ERR_OUT_OF_RANGE \fP\fP
 .TP
 \fB\fIV_ERR_FILE \fP\fP
+.TP
+\fB\fIV_ERR_STACK \fP\fP
+.TP
+\fB\fIV_ERR_ALLOCATE_MEMORY \fP\fP
+.TP
+\fB\fIV_ERR_MEMCPY \fP\fP
+.TP
+\fB\fIV_ERR_MEMMOVE \fP\fP
+.TP
+\fB\fIV_ERR_INVALID_ARGUMENT \fP\fP
 .SH "Function Documentation"
 .PP 
 .SS "int double_cmp (const void * a, const void * b)"
@@ -397,7 +433,7 @@ Binary Search of an item\&. It copies in 'vector_t *slice' all the items that ma
 .PP
 \fBReturns:\fP
 .RS 4
-V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND\&. 
+V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND V_ERR_INVALID_ARGUMENT 
 .RE
 .PP
 
@@ -441,7 +477,7 @@ V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty
 
 .SS "\fBvector_t\fP* vector_Init (int capacity, size_t ele_size, int(*)(const void *, const void *) compar)"
 
-.SS "void vector_Insert (\fBvector_t\fP * v, void const * item)"
+.SS "void vector_Insert (\fBvector_t\fP * v, void * item)"
 
 .PP
 Insert (an item of data) at the end of \fBVector\fP object\&. 
@@ -622,7 +658,7 @@ Matches zero of more characters\&. ? Matches exactly one character\&.
 .PP
 \fBReturns:\fP
 .RS 4
-V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND\&. 
+V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND V_ERR_INVALID ARGUMENT It returns items until it is reached the capacity of slice 
 .RE
 .PP
 
@@ -723,7 +759,7 @@ Slice of items from the \fBVector\fP object\&.
 .PP
 \fBReturns:\fP
 .RS 4
-V_OK if slice is correct and \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is empty V_ERR_OUT_OF_RANGE if slice is not ok 
+V_OK if slice is correct and \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is empty V_ERR_OUT_OF_RANGE if slice is not ok V_ERR_INVALID_ARGUMENT 
 .RE
 .PP
 

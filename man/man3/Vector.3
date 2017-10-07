@@ -1,4 +1,4 @@
-.TH "Vector" 3 "Fri Oct 6 2017" "Version 0.1" "Vector" \" -*- nroff -*-
+.TH "Vector" 3 "Sun Oct 8 2017" "Version 0.1" "Vector" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -32,6 +32,9 @@ Vector \- A generic and dynamic container that expands automatically as elements
 .br
 .ti -1c
 .RI "void(* \fBDestroy_pointer\fP )(struct \fBVector\fP *v)"
+.br
+.ti -1c
+.RI "void(* \fBDestroy_slice\fP )(struct \fBVector\fP *v)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -110,6 +113,8 @@ Array to hold the information
 Destructor 
 .SS "void(* Vector::Destroy_pointer) (struct \fBVector\fP *v)"
 Destructor to use with the function vector_Insert_from_file\&. It frees the pointers created and then it calls Destroy 
+.SS "void(* Vector::Destroy_slice) (struct \fBVector\fP *v)"
+Destructor 
 .SS "size_t Vector::ele_size"
 \fBVector\fP's data type\&. It has to be the returned value of 'sizeof(\fBVector\fP's data type)'
 .PP

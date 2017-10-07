@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['capacity',['CAPACITY',['../doubles_8c.html#a91fbe6020a4bbd73084f0681b9092479',1,'CAPACITY():&#160;doubles.c'],['../check__vector_8c.html#a91fbe6020a4bbd73084f0681b9092479',1,'CAPACITY():&#160;check_vector.c']]]
+  ['buffer_5fsize',['BUFFER_SIZE',['../vector_8h.html#a6b20d41d6252e9871430c242cb1a56e7',1,'vector.h']]]
 ];

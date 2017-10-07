@@ -8,135 +8,103 @@ C doesn’t allow data types to be passed as parameters. That means a generic co
 
 Vector is a small standard library and [an easy-to-use C API][embedding]
 
-               The object provided by the Vector library is an array type
-               container that:
-
-               1. It only must contain addresses of HEAP.
-                   The insertion must be done  by calling the Memory
-                   Manager, that is: any new insertion will have
-                   to be done with pointers to HEAP.
-
-                2. Resides in contiguous memory, accessible by
-                    arithmetic of pointers
-
-                3. It is generic: it supports any types: we identifie the
-                    information not by its type, but by its size
-
-                4. The object resides in HEAP
-
-                5. The object is self-expanding: doubles its capacity
-                    automatically if the  insertion of a new element
-                    requires it
-
-                6. The library provides insertion of items from file.
+The object provided by the Vector library is an array type container that:
 
 
-                The insertion of elements is always by reference. If the item
-                were created in main, (reside in STACK) the object pointed by
-                our stored direction, is released when the application finishes.
-                There is nothing to free.
+1. It only must contain addresses of HEAP. The insertion must be done  by calling the Memory Manager, that is: any new insertion will have to be done with pointers to HEAP.
+2. Resides in contiguous memory, accessible by arithmetic of pointers
+3. It is generic: it supports any types: we identifie the information not by its type, but by its size
+4. The object resides in HEAP
+5. The object is self-expanding: doubles its capacity automatically if the  insertion of a new element requires it
+6. The library provides insertion of items from file.
 
-                But if you create the element by calling the Memory Manager
-                (calloc,  * malloc, ...) then the pointer resides in the HEAP, and
-                must be released before application has finished.
+The contract is:
 
-               This means that either we create data that resides in STACK or
-               we create it by calling the memory manager. If both forms
-               are combined  then we release a STACK direction with the call
-               to Destroy, and this will cause a segment violation, or any other
-               undefined behavior. Or, if we do not call Destroy, we will leave
-               pointers without releasing when our application has returned
-               (memory - leak).
+1. Insert only references to HEAP
+2. Who calls the Memory Manager, free the direction stored in the pointer.
 
-               If the insertion is made from function calls, you must only insert
-               elements whose addresses reside in HEAP, since the space in
-               the stack corresponding to the function is released once it
-               returns.
-
-               Well, our object only must contain addresses of HEAP.
-               The insertion must be done  by calling the Memory Manager
-               before. That is: any new insertion will have to be done with
-               pointers to HEAP.
-
-               The contract is:
-
-               1.Insert only references to HEAP
-               2. Who calls the Memory Manager, free the direction stored in
-                   the pointer.
-
-               If we follow the rules, there will be no problem: neither
-               memory leak, neither double free.
-
-
+If we follow the rules, there will be no problem: neither memory leak, neither corruption memory.
 
 **Example**
 
 ```dart
+        int structs_len = 10;
 
-                             Remove records with patterns
+        // The client calls Memory Manager
+        struct st_ex *structs = calloc(structs_len, sizeof(struct st_ex));
+        structs[0] = (struct st_ex) {"mp3 player", 299.0f};
+        structs[1] = (struct st_ex) {"plasma tv", 2200.0f};
+        structs[2] = (struct st_ex) {"notebook", 1300.0f};
+        structs[3] = (struct st_ex) {"smartphone", 499.99f};
+        structs[4] = (struct st_ex) {"mp3 player", 600.0f};
+        structs[5] = (struct st_ex) {"mp3 player", 451.0f};
+        structs[6] = (struct st_ex) {"mp4 player", 7211.0f};
+        structs[7] = (struct st_ex) {"dvd player", 150.0f};
+        structs[8] = (struct st_ex) {"mp3 ply v", 631.0f};
+        structs[9] = (struct st_ex) {"matches", 0.2f };
 
-
-        struct st_ex structs[] =
-                                        {{"mp3 player", 299.0f},
-                                            {"plasma tv", 2200.0f},
-                                            {"notebook", 1300.0f},
-                                            {"mp3 player", 132.0f},
-                                            {"smartphone", 499.99f},
-                                            {"mp3 player", 600.0f},
-                                            {"dvd player", 150.0f},
-                                            {"mp3 player", 451.0f},
-                                            {"mp4 player", 7211.0f},
-                                            {"mp3 ply v", 631.0f},
-                                            {"matches", 0.2f }};
-
-        size_t structs_len = sizeof(structs) / sizeof(struct st_ex);
-
-        // Constructor: required size of elements (sizeof(struct st_ex)
-        // and order criteria (pointer function "struct_cmp_by_product"
+        //Constructor
         vector_t *struc = vector_Init(structs_len,
                                     sizeof(struct st_ex),
                                     struct_cmp_by_product);
 
         size_t i;
+        v_stat status;
+
         for(i = 0; i < structs_len; i++)
             vector_Insert(struc, &structs[i]);
 
-        // Use qsort to order the Vector object
-        vector_Sort(struc);
+/*
+ *         struct st_ex buy = {"matches", 32.0f}
+ *         vector_Insert(struc, &pepito);
+ *         It will generate a warning. 'buy' is in the stack
+ */
 
-        puts("*** Struct (product)... remove pattern");
 
-        // Use pattern (fnmatch.h library)
-        pattern ="mp*";
+    /***************************************************************
+     *
+     *                          STRUCT SEARCHING: Filter, Has, Pattern
+     *
+     * *************************************************************/
 
-        status = vector_Remove_Pattern(struc, pattern);
+
+        puts("*** Struct searching (product)... ordered (by price)");
+
+        vector_t *searched = vector_Init(structs_len,
+                                            sizeof(struct st_ex),
+                                            struct_cmp_by_price);
+
+        char *found = "mp3 player";
+
+        // Binary Search of an item. It copies in 'searched' all the items that
+        // match with 'found'
+        status = vector_Filter(struc, found, searched);
 
         switch(status) {
-
-            case V_OK :  print_struct_Vector(struc, vector_Len(struc));
+            case V_OK :  print_struct_Vector(searched,
+                                                                vector_Len(searched));
                                  break;
             case V_ERR_IS_EMPTY :
                                 printf("Vector is Empty\n");
                                 break;
             case V_ERR_VALUE_NOT_FOUND :
-                                printf("Pattern %s has not been found\n", pattern);
+                                printf("Item %s has not been found\n", found);
+                                break;
+            case V_ERR_INVALID_ARGUMENT:
+                                printf("Invalid arguments\n");
                                 break;
         }
 
+        // The client frees its pointers to HEAP
+        free(structs);
 
+        // The library frees its pointers to HEAP
         struc->Destroy(struc);
-```
-**Output**
-```
-*** Struct (product)... remove pattern
-[ product: dvd player    price: $195.00 ]
-[ product: matches   price: $0.26 ]
-[ product: notebook      price: $1690.00 ]
-[ product: plasma tv     price: $2860.00 ]
-[ product: smartphone    price: $649.99 ]
-```
+        searched->Destroy_slice(searched);
 
+        return 0;
 
+```
 **How to Install**
 Prerequisites for installation:
 

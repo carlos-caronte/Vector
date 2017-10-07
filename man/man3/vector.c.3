@@ -1,4 +1,4 @@
-.TH "src/vector.c" 3 "Fri Oct 6 2017" "Version 0.1" "Vector" \" -*- nroff -*-
+.TH "src/vector.c" 3 "Sun Oct 8 2017" "Version 0.1" "Vector" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -9,8 +9,6 @@ src/vector.c
 \fC#include <stdio\&.h>\fP
 .br
 \fC#include <stdlib\&.h>\fP
-.br
-\fC#include <assert\&.h>\fP
 .br
 \fC#include <string\&.h>\fP
 .br
@@ -87,7 +85,7 @@ src/vector.c
 .br
 .RI "Binary Search of an item\&. It uses qsort\&. "
 .ti -1c
-.RI "void \fBvector_Insert\fP (\fBvector_t\fP *v, void const *item)"
+.RI "void \fBvector_Insert\fP (\fBvector_t\fP *v, void *item)"
 .br
 .RI "Insert (an item of data) at the end of \fBVector\fP object\&. "
 .ti -1c
@@ -276,7 +274,7 @@ Binary Search of an item\&. It copies in 'vector_t *slice' all the items that ma
 .PP
 \fBReturns:\fP
 .RS 4
-V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND\&. 
+V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND V_ERR_INVALID_ARGUMENT 
 .RE
 .PP
 
@@ -338,7 +336,7 @@ Pointer to vector_t type
 .RE
 .PP
 
-.SS "void vector_Insert (\fBvector_t\fP * v, void const * item)"
+.SS "void vector_Insert (\fBvector_t\fP * v, void * item)"
 
 .PP
 Insert (an item of data) at the end of \fBVector\fP object\&. 
@@ -519,7 +517,7 @@ Matches zero of more characters\&. ? Matches exactly one character\&.
 .PP
 \fBReturns:\fP
 .RS 4
-V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND\&. 
+V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND V_ERR_INVALID ARGUMENT It returns items until it is reached the capacity of slice 
 .RE
 .PP
 
@@ -620,7 +618,7 @@ Slice of items from the \fBVector\fP object\&.
 .PP
 \fBReturns:\fP
 .RS 4
-V_OK if slice is correct and \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is empty V_ERR_OUT_OF_RANGE if slice is not ok 
+V_OK if slice is correct and \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is empty V_ERR_OUT_OF_RANGE if slice is not ok V_ERR_INVALID_ARGUMENT 
 .RE
 .PP
 

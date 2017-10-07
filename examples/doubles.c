@@ -27,7 +27,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<assert.h>
-#include"../src/vector.h"
+#include"vector.h"
 
 #define CAPACITY 90000
 #define MOD 17
@@ -67,7 +67,8 @@ int main()
                     x_stat = vector_Remove(v, 0);
                     assert(!x_stat);
                 }
-                vector_Insert(v, &f[i - 1]);
+                 vector_Insert(v, &f[i - 1]);
+
                 v_len = vector_Len(v);
                 assert(v_len == i - (i / 11));
         }

@@ -26,7 +26,6 @@
 
 #include<stdio.h>
 #include<stdlib.h>
-#include<assert.h>
 #include<string.h>
 #include<fnmatch.h>
 #include"vector.h"
@@ -71,6 +70,17 @@ static void vector_Destroy_pointer(vector_t *v) {
 
 
 /**
+ * @brief           Destructor. Management of memory: free the data array
+ *                      in the Vector object.
+ * @param v     Pointer to vector_t type variable
+ *
+ */
+static void vector_Destroy_slice(vector_t *v) {
+    free(v);
+}
+
+
+/**
  * @brief                   Constructor. Initializes Vector object with the given
  *                              capacity
  * @param capacity  Capacity of the Vector object to be created
@@ -87,20 +97,21 @@ static void vector_Destroy_pointer(vector_t *v) {
 vector_t * vector_Init(int capacity, size_t ele_size,
                 int (*compar)(const void * a, const void * b)) {
 
-     assert(capacity > 0 && ele_size > 0);
+     v_assert(capacity > 0 && ele_size > 0, V_ERR_INVALID_ARGUMENT);
+
      vector_t *v = malloc(sizeof(vector_t));
-     assert(v != NULL);
+     v_assert(v, V_ERR_ALLOCATE_MEMORY);
      v->len = 0;
      v->capacity = capacity;
      v->ele_size = ele_size;
      v->compar = compar;
      v->data = calloc(v->capacity, ele_size);
+     // If memory error, exit,,,
+     v_assert(v->data, V_ERR_ALLOCATE_MEMORY);
+
      v->Destroy = vector_Destroy;
      v->Destroy_pointer = vector_Destroy_pointer;
-
-
-     // If memory error, exit,,,
-     assert(v->data != NULL);
+     v->Destroy_slice = vector_Destroy_slice;
 
     return v;
 }
@@ -250,7 +261,8 @@ v_stat vector_Item(const vector_t *v, void *item, int position) {
                         position = vector_Pos(v, position);
                         void *sourceAddr;
                         sourceAddr = (char *)v->data + v->ele_size * position;
-                        assert(memcpy(item, sourceAddr, v->ele_size));
+                        v_assert(memcpy(item, sourceAddr, v->ele_size),
+                                                    V_ERR_MEMCPY);
                         return V_OK;
         case V_ERR_IS_EMPTY:
                         return V_ERR_IS_EMPTY;
@@ -303,52 +315,57 @@ v_stat vector_Iter_next(vector_t *v, void *item, int index) {
  *                          client.
  * @returns           V_OK if the element was found, or
  *                          V_IS_EMPTY if the Vector Object is empty or
- *                          V_ERR_VALUE_NOT_FOUND.
+ *                          V_ERR_VALUE_NOT_FOUND
+ *                          V_ERR_INVALID_ARGUMENT
  */
 v_stat vector_Filter(vector_t *v, void *value, vector_t *slice) {
 
     if (vector_isEmpty(v))
         return V_ERR_IS_EMPTY;
-    else {
-        vector_Sort(v);
-        int left = 0;
-        int right = v->len - 1;
 
-        while (left <= right) {
-            int middle = (left + right) / 2;
-            void *item = (char *)v->data + v->ele_size * middle;
-            int compar = v->compar( item, value);
+    else if (v->ele_size != slice->ele_size || slice->capacity < 1) {
+        return V_ERR_INVALID_ARGUMENT;
+    } else {
 
-            if (compar == 0) {
-                int reverse = middle;
-                do {
-                    vector_Insert(slice, item);
-                    middle++;
-                    item = (char *)v->data + v->ele_size * middle;
-                    compar = v->compar(value, item);
-                } while (compar == 0 && (middle < (v->len - 1)));
+            vector_Sort(v);
+            int left = 0;
+            int right = v->len - 1;
 
-                if (reverse > 0) {
-                    middle = reverse - 1;
-                    item = (char *)v->data + v->ele_size * middle;
-                    compar = v->compar(value, item);
+            while (left <= right) {
+                int middle = (left + right) / 2;
+                void *item = (char *)v->data + v->ele_size * middle;
+                int compar = v->compar( item, value);
 
-                    while (compar == 0 && (middle > 0)) {
+                if (compar == 0) {
+                    int reverse = middle;
+                    do {
                         vector_Insert(slice, item);
-                        middle--;
+                        middle++;
                         item = (char *)v->data + v->ele_size * middle;
                         compar = v->compar(value, item);
+                    } while (compar == 0 && (middle < (v->len - 1)));
+
+                    if (reverse > 0) {
+                        middle = reverse - 1;
+                        item = (char *)v->data + v->ele_size * middle;
+                        compar = v->compar(value, item);
+
+                        while (compar == 0 && (middle > 0)) {
+                            vector_Insert(slice, item);
+                            middle--;
+                            item = (char *)v->data + v->ele_size * middle;
+                            compar = v->compar(value, item);
+                        }
                     }
-                }
-                vector_Sort(slice);
-                return V_OK;
+                    vector_Sort(slice);
+                    return V_OK;
 
-            }  else if (compar > 0)
-                    right = middle - 1;
+                }  else if (compar > 0)
+                        right = middle - 1;
 
-                else
-                    left = middle + 1;
-        }
+                    else
+                        left = middle + 1;
+            }
     }
     return V_ERR_VALUE_NOT_FOUND;
 }
@@ -420,26 +437,48 @@ v_stat vector_Fold(vector_t *v, void (*fn) (void*, void*, void*),
  * @param slice        Vector object pointer to return the slice
  * @returns               V_OK if the element was found, or
  *                              V_IS_EMPTY if the Vector Object is empty or
- *                              V_ERR_VALUE_NOT_FOUND.
+ *                              V_ERR_VALUE_NOT_FOUND
+ *                              V_ERR_INVALID ARGUMENT
+ *                              It returns items until it is reached the capacity
+ *                              of slice
  */
 v_stat vector_Pattern(vector_t *v, const char *pattern,
                                                         vector_t *slice) {
 
+
     if (vector_isEmpty(v))
         return V_ERR_IS_EMPTY;
-    else {
-        size_t index;
-        const void *item;
 
-        for (index = 0; index < v->len; index++) {
-            item = (char *)v->data + v->ele_size * index;
-            if (!fnmatch(pattern, item, 0))
-                vector_Insert(slice, item);
+    else if (v->ele_size != slice->ele_size || slice->capacity < 1) {
+        return V_ERR_INVALID_ARGUMENT;
+    } else {
+
+            size_t index;
+            void *item;
+            void *destAddr;
+
+            for (index = 0; index < v->len; index++) {
+                if (v->capacity > v->len) {
+                    item = (char *)v->data + v->ele_size * index;
+                    if (!fnmatch(pattern, item, 0)) {
+                        destAddr = (char *)slice->data + slice->ele_size * index;
+                        v_assert(memmove(destAddr, item,
+                                            slice->ele_size),
+                                            V_ERR_MEMMOVE);
+                        slice->len++;
+                    }
+
+                } else {
+                        break;
+                    }
+            }
+            if (slice->len > 0) {
+                vector_Sort(slice);
+                return V_OK;
+            } else {
+                    return V_ERR_VALUE_NOT_FOUND;
+                }
         }
-        vector_Sort(slice);
-        return V_OK;
-    }
-    return V_ERR_VALUE_NOT_FOUND;
 }
 
 
@@ -452,12 +491,18 @@ v_stat vector_Pattern(vector_t *v, const char *pattern,
  * @returns           V_OK if slice is correct and Vector is not empty
  *                          V_ERR_IS_EMPTY if the Vector Object is empty
  *                          V_ERR_OUT_OF_RANGE if slice is not ok
+ *                          V_ERR_INVALID_ARGUMENT
  */
 v_stat
 vector_Slice(const vector_t *v, vector_t *slice, int from, int to ) {
 
     if (vector_isEmpty(v))
         return V_ERR_IS_EMPTY;
+
+    else if (v->ele_size != slice->ele_size || slice->capacity < 1) {
+        return V_ERR_INVALID_ARGUMENT;
+    }
+
     else {
 
         // Both, From and To are included
@@ -468,14 +513,44 @@ vector_Slice(const vector_t *v, vector_t *slice, int from, int to ) {
         void *sourceAddr;
         sourceAddr = (char *)v->data + v->ele_size * from;
 
-        assert(memmove(slice->data, sourceAddr,
-                                    v->ele_size * len_slice));
+        v_assert(memmove(slice->data, sourceAddr,
+                                    v->ele_size * len_slice),
+                                    V_ERR_MEMMOVE);
 
         slice->len = len_slice;
 
         return V_OK;
     }
 }
+
+/**
+ * @brief
+ * @param v
+ * @param item
+ * @returns
+ *
+ *
+ */
+static bool vector_Heap(vector_t *v, void *item) {
+
+    long long t_v = (long long) v;
+    long long t_item = (long long) item;
+    size_t i;
+    size_t tam = sizeof(long long);
+    unsigned k = 1 << (tam * 8 - 1);
+
+    for (i = 0; i < 24; i++) {
+
+        if (((t_v & (k >> i)) == (k >> i)) !=
+            ((t_item & (k >> i)) == (k >> i)))
+
+            return false;
+    }
+
+    return true;
+
+}
+
 
 /***************************************************************
  *
@@ -527,14 +602,16 @@ vector_Slice(const vector_t *v, vector_t *slice, int from, int to ) {
  * @param v         Pointer to vector_t type variable
  * @param item    Value to insert in Vector object
  */
-void vector_Insert(vector_t*v, void const *item) {
+void vector_Insert(vector_t*v, void *item) {
+
+        v_assert(!vector_Heap(v, item), V_ERR_STACK);
 
         void *destAddr;
         if (v->len == v->capacity) {
                 v->capacity *= 2; // Capacity is duplicated
                 v->data = realloc(v->data, v->capacity * v->ele_size);
                 // If memory error, exit,,,
-                assert(v->data != NULL);
+                v_assert(v->data, V_ERR_ALLOCATE_MEMORY);
         }
 
         /* v->len is Base One Index.
@@ -542,8 +619,10 @@ void vector_Insert(vector_t*v, void const *item) {
          * item in it,  and then we do v->len++
          */
         destAddr = (char *)v->data + v->ele_size * v->len;
-        assert(memcpy(destAddr, item, v->ele_size));
+        v_assert(memcpy(destAddr, item, v->ele_size),
+                                    V_ERR_MEMCPY);
         v->len++;
+
 }
 
 
@@ -655,7 +734,9 @@ v_stat vector_Remove(vector_t *v, int position){
             if (quantum > 0) {
                 sourceAddr = (char *)v->data + v->ele_size * (position + 1);
                 destAddr = (char *)v->data + v->ele_size * position;
-                assert(memcpy(destAddr, sourceAddr, v->ele_size * quantum));
+                v_assert(
+                memcpy(destAddr, sourceAddr, v->ele_size * quantum),
+                V_ERR_MEMCPY);
             }
             v->len--;
             return V_OK;
@@ -948,13 +1029,9 @@ static char *substring(char *string, int position, int length) {
 
     char *pointer;
     int c;
-   pointer = malloc(sizeof(char)*(length+1));
 
-   if (pointer == NULL)
-   {
-      printf("Unable to allocate memory.\n");
-      exit(1);
-   }
+   pointer = malloc(sizeof(char)*(length+1));
+   v_assert(pointer, V_ERR_ALLOCATE_MEMORY);
 
    for (c = 0 ; c < length ; c++)
    {
@@ -966,4 +1043,78 @@ static char *substring(char *string, int position, int length) {
 
     return pointer;
 
+}
+
+/**
+ * @brief
+ * @param file
+ * @param line_number
+ *
+ *
+ */
+static void vector_Abort(v_stat status, const char* file, int line_number) {
+
+    switch(status) {
+        case V_ERR_ALLOCATE_MEMORY :
+            fprintf(stderr, "\nVirtual memory exhausted. File: %s Line:% d\n",
+            file,
+            line_number);
+            exit(EXIT_FAILURE);
+            break;
+
+        case V_ERR_MEMCPY :
+            fprintf(stderr,
+            "\nCopy memory error [memcpy]. File: %s Line:% d\n",
+            file,
+            line_number);
+            exit(EXIT_FAILURE);
+            break;
+
+        case V_ERR_MEMMOVE :
+            fprintf(stderr,
+            "\nMove memory error [memmove]. File: %s Line:% d\n",
+            file,
+            line_number);
+            exit(EXIT_FAILURE);
+            break;
+
+        case V_ERR_INVALID_ARGUMENT :
+            fprintf(stderr,
+            "\nInvalid argument in Constructor. File: %s Line:% d\n",
+            file,
+            line_number);
+            exit(EXIT_FAILURE);
+            break;
+        case V_ERR_STACK:
+            fprintf(stderr,
+            "\nDirection in STACK. Warning!!!. File: %s : % d\n",
+            file,
+            line_number);
+            break;
+
+    }
+}
+
+
+/**
+ * @brief
+ * @param n
+ *
+ *
+ */
+static void printBinary(long long n) {
+
+    int i;
+    size_t tam = sizeof(long long);
+    unsigned k = 1 << (tam * 8 - 1);
+
+    for (i = 0; i < tam * 8; i++) {
+        if ((n & (k >> i)) == (k >> i))
+            printf("1");
+        else
+            printf("0");
+        if ( (i + 1) % 8 == 0)
+            printf(" ");
+    }
+    putchar('\n');
 }

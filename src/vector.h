@@ -28,6 +28,8 @@
 #define VECTOR_H
 #include<stdbool.h>
 
+#define MALLOC_CHECK_ 2
+
 /**
  * @brief     A generic and dynamic container that expands automatically
  *              as elements are added.
@@ -122,6 +124,9 @@ typedef struct Vector{
                                 with the function vector_Insert_from_file. It frees
                                 the pointers created and then it calls Destroy**/
 
+        void(*Destroy_slice)(struct Vector *v);/**<Destructor*/
+
+
 } vector_t;
 
 
@@ -131,6 +136,11 @@ typedef enum V_stat {
     V_ERR_VALUE_NOT_FOUND = 2,
     V_ERR_OUT_OF_RANGE = 3,
     V_ERR_FILE = 4,
+    V_ERR_STACK = 5,
+    V_ERR_ALLOCATE_MEMORY = 6,
+    V_ERR_MEMCPY = 7,
+    V_ERR_MEMMOVE = 8,
+    V_ERR_INVALID_ARGUMENT = 9,
 }v_stat;
 
 /**
@@ -147,16 +157,29 @@ typedef enum V_stat {
  */
 #define BUFFER_SIZE 1024
 
+#define _v_assert(X, Y, F, LINE)                                                                              \
+{                                                                                                             \
+    if(!X){                                                                                                   \
+        vector_Abort(                                                                                         \
+                Y,                                                                                            \
+                F,                                                                                            \
+                LINE);                                                                                        \
+    }                                                                                                         \
+}
+
+#define v_assert(X, Y) _v_assert(X, Y, __FILE__, __LINE__)
+
 
 /***************************************************************
  *
  *                                  Constructor  -  Destructor
  *
  * *************************************************************/
-vector_t * vector_Init(int capacity, size_t ele_size,
+vector_t * vector_Init(int  capacity, size_t ele_size,
                                   int (*compar)(const void *, const void *));
 static void vector_Destroy(vector_t *v);
 static void vector_Destroy_pointer(vector_t *v);
+static void vector_Destroy_slice(vector_t *v);
 
 
 
@@ -170,7 +193,7 @@ bool vector_isEquals(const vector_t *v1, const vector_t *v2);
 bool vector_isEmpty(const vector_t  *v);
 int vector_Len(const vector_t *v);
 v_stat vector_Pos_Err(const vector_t *v, int position);
-
+static bool vector_stack(vector_t *v, void *item);
 
 /***************************************************************
  *
@@ -198,7 +221,7 @@ v_stat vector_Slice(const vector_t *v, vector_t *slice,
  *
  * *************************************************************/
 v_stat vector_Has(vector_t *v, void *value);
-void vector_Insert(vector_t*v, void const *item);
+void vector_Insert(vector_t *v, void *item);
 v_stat vector_Insert_from_file(vector_t *v, const char *filename,
                                                                 const char delimiter);
 v_stat vector_Map(vector_t *v, void (*fn) (void *));
@@ -219,6 +242,8 @@ static int vector_Pos(const vector_t *v, int position);
 static char * substring(char *string, int position, int length);
 static size_t  split_String( char* src, int position, int length,
                                                                 char delimiter );
-
+static void vector_Abort(v_stat status,
+                            const char* file, int line_number);
+static void printBinary(long long n);
 
 #endif /* VECTOR_H */
