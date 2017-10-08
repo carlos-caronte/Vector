@@ -32,11 +32,13 @@
 
 /**
  * @brief     A generic and dynamic container that expands automatically
- *              as elements are added.
+ *              as elements are added. The maximum storage capacity is
+ *              (2^(sizeof(int) * 8 - 1))  / v->size_ele * 8
+ *              [vector_Max_capacity]
  *
  *              The library supports amortized constant time insertion and
  *              removal of elements , as well as constant time access.
- * *
+ *
  *              The object provided by the Vector library is an array type
  *              container that:
  *
@@ -141,6 +143,7 @@ typedef enum V_stat {
     V_ERR_MEMCPY = 7,
     V_ERR_MEMMOVE = 8,
     V_ERR_INVALID_ARGUMENT = 9,
+    V_ERR_MAX_CAPACITY = 10,
 }v_stat;
 
 /**
@@ -194,6 +197,7 @@ bool vector_isEmpty(const vector_t  *v);
 int vector_Len(const vector_t *v);
 v_stat vector_Pos_Err(const vector_t *v, int position);
 static bool vector_stack(vector_t *v, void *item);
+int vector_Max_capacity(vector_t *v);
 
 /***************************************************************
  *

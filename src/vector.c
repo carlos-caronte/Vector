@@ -97,7 +97,8 @@ static void vector_Destroy_slice(vector_t *v) {
 vector_t * vector_Init(int capacity, size_t ele_size,
                 int (*compar)(const void * a, const void * b)) {
 
-     v_assert(capacity > 0 && ele_size > 0, V_ERR_INVALID_ARGUMENT);
+     v_assert(capacity > 0 && ele_size > 0,
+                                            V_ERR_INVALID_ARGUMENT);
 
      vector_t *v = malloc(sizeof(vector_t));
      v_assert(v, V_ERR_ALLOCATE_MEMORY);
@@ -209,6 +210,20 @@ v_stat vector_Pos_Err(const vector_t *v, int position) {
                     return V_ERR_OUT_OF_RANGE;
                 }
     }
+}
+
+
+/**
+ * @brief
+ * @param v
+ * @returns
+ *
+ *
+ */
+int vector_Max_capacity(vector_t *v) {
+    unsigned k = 1 << (sizeof(int) * 8 - 1);
+    int m = v->ele_size * 8;
+    return (k - 1) / m;
 }
 
 /***************************************************************
@@ -635,10 +650,14 @@ static bool vector_Heap(vector_t *v, void *item) {
 void vector_Insert(vector_t*v, void *item) {
 
         v_assert(vector_Heap(v, item), V_ERR_STACK);
-
         void *destAddr;
         if (v->len == v->capacity) {
+
                 v->capacity *= 2; // Capacity is duplicated
+
+                v_assert(vector_Capacity(v) < vector_Max_capacity(v),
+                                            V_ERR_MAX_CAPACITY);
+
                 v->data = realloc(v->data, v->capacity * v->ele_size);
                 // If memory error, exit,,,
                 v_assert(v->data, V_ERR_ALLOCATE_MEMORY);
@@ -692,7 +711,11 @@ v_stat vector_Insert_from_file(vector_t *v, const char *filename,
                     if (length == 0)
                         break;
                     token = substring(buffer, pos, length);
+
+                    // Capacity maximum storage
+                    // (2^(sizeof(int) * 8 - 1))  / v->size_ele * 8
                     vector_Insert(v, &token);
+
                     if (buffer[pos + length] == '\n')
                         break;
                     pos += (length + 1);
@@ -1117,10 +1140,19 @@ static void vector_Abort(v_stat status, const char* file, int line_number) {
             break;
         case V_ERR_STACK:
             fprintf(stderr,
-            "\nDirection in STACK. Warning!!!. File: %s : % d\n",
+            "\nDirection pointer to STACK. Warning!!!. File: %s : % d\n",
             file,
             line_number);
             break;
+        case V_ERR_MAX_CAPACITY:
+            // (2^(sizeof(int) * 8 - 1))  / v->size_ele * 8
+            fprintf(stderr,
+            "\nMax capacity. Memory exhausted. File: %s Line:% d\n",
+            file,
+            line_number);
+            exit(EXIT_FAILURE);
+            break;
+
 
     }
 }
@@ -1148,3 +1180,4 @@ static void printBinary(long long n) {
     }
     putchar('\n');
 }
+
