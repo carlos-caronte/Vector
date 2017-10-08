@@ -313,7 +313,9 @@ v_stat vector_Iter_next(vector_t *v, void *item, int index) {
  * @param slice    Pointer to vector_t object which will collect all the
  *                          items that match with the supplied value by the
  *                          client.
- * @returns           V_OK if the element was found, or
+ * @returns           V_OK if the element was found and  at most
+ *                          slice->capacity items, or
+ *
  *                          V_IS_EMPTY if the Vector Object is empty or
  *                          V_ERR_VALUE_NOT_FOUND
  *                          V_ERR_INVALID_ARGUMENT
@@ -339,7 +341,21 @@ v_stat vector_Filter(vector_t *v, void *value, vector_t *slice) {
                 if (compar == 0) {
                     int reverse = middle;
                     do {
-                        vector_Insert(slice, item);
+                        if (vector_Capacity(slice) >vector_Len(slice)) {
+                            void *destAddr = (char *)slice->data +
+                                                                     slice->ele_size *
+                                                                     vector_Len(slice);
+
+                            v_assert(memmove(destAddr, item,
+                                                slice->ele_size),
+                                                V_ERR_MEMMOVE);
+                            slice->len++;
+
+
+                        } else {
+                                break;
+                            }
+
                         middle++;
                         item = (char *)v->data + v->ele_size * middle;
                         compar = v->compar(value, item);
@@ -351,7 +367,21 @@ v_stat vector_Filter(vector_t *v, void *value, vector_t *slice) {
                         compar = v->compar(value, item);
 
                         while (compar == 0 && (middle > 0)) {
-                            vector_Insert(slice, item);
+                            if (vector_Capacity(slice) >vector_Len(slice)) {
+                                void *destAddr = (char *)slice->data +
+                                                                         slice->ele_size *
+                                                                         vector_Len(slice);
+
+                                v_assert(memmove(destAddr, item,
+                                                    slice->ele_size),
+                                                    V_ERR_MEMMOVE);
+                                slice->len++;
+
+
+                            } else {
+                                    break;
+                                }
+
                             middle--;
                             item = (char *)v->data + v->ele_size * middle;
                             compar = v->compar(value, item);
@@ -604,7 +634,7 @@ static bool vector_Heap(vector_t *v, void *item) {
  */
 void vector_Insert(vector_t*v, void *item) {
 
-        v_assert(!vector_Heap(v, item), V_ERR_STACK);
+        v_assert(vector_Heap(v, item), V_ERR_STACK);
 
         void *destAddr;
         if (v->len == v->capacity) {
