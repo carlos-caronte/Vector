@@ -1,4 +1,4 @@
-AC_INIT([vector], [0.1], [carlos.caronte@gmail.com])
+AC_INIT([vector], [0.2], [carlos.caronte@gmail.com])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIRS([m4])
 AM_INIT_AUTOMAKE([ -Wall -Werror])

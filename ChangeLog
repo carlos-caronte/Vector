@@ -1,0 +1,7 @@
+Vector 0.1	A contiguous generic and growable array type in C 
+Vector 0.2  Problem STACK-HEAP. Now the library knows if a new item
+			is in the heap or in the stack. If the item is in the stack
+			it prints on stderr a warning
+			We have fixed the slices. Now, the copy is made with memmove
+			We have added a macro to best inform about errors.
+			 
