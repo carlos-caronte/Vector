@@ -45,6 +45,9 @@ src/vector.c
 .br
 .RI "Control if supplied position is out of range or \fBVector\fP is empty\&. "
 .ti -1c
+.RI "int \fBvector_Max_capacity\fP (\fBvector_t\fP *v)"
+.br
+.ti -1c
 .RI "\fBv_stat\fP \fBvector_Begin\fP (const \fBvector_t\fP *v, void *item)"
 .br
 .RI "Item at \fBVector\fP's beginning\&. "
@@ -274,10 +277,10 @@ Binary Search of an item\&. It copies in 'vector_t *slice' all the items that ma
 .PP
 \fBReturns:\fP
 .RS 4
-V_OK if the element was found, or V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND V_ERR_INVALID_ARGUMENT 
+V_OK if the element was found and at most slice->capacity items, or
 .RE
 .PP
-
+V_IS_EMPTY if the \fBVector\fP Object is empty or V_ERR_VALUE_NOT_FOUND V_ERR_INVALID_ARGUMENT 
 .SS "\fBv_stat\fP vector_Fold (\fBvector_t\fP * v, void(*)(void *, void *, void *) fn, void * result)"
 
 .PP
@@ -491,6 +494,19 @@ Applies the function fn to each element of the \fBVector\fP\&.
 \fBReturns:\fP
 .RS 4
 V_OK or V_IS_EMPTY if the \fBVector\fP Object is empty 
+.RE
+.PP
+
+.SS "int vector_Max_capacity (\fBvector_t\fP * v)"
+
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
 .RE
 .PP
 

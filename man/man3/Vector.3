@@ -2,7 +2,7 @@
 .ad l
 .nh
 .SH NAME
-Vector \- A generic and dynamic container that expands automatically as elements are added\&.  
+Vector \- A generic and dynamic container that expands automatically as elements are added\&. The maximum storage capacity is (2^(sizeof(int) * 8 - 1)) / v->size_ele * 8 [vector_Max_capacity]\&.  
 
 .SH SYNOPSIS
 .br
@@ -39,25 +39,24 @@ Vector \- A generic and dynamic container that expands automatically as elements
 .in -1c
 .SH "Detailed Description"
 .PP 
-A generic and dynamic container that expands automatically as elements are added\&. 
+A generic and dynamic container that expands automatically as elements are added\&. The maximum storage capacity is (2^(sizeof(int) * 8 - 1)) / v->size_ele * 8 [vector_Max_capacity]\&. 
 
 The library supports amortized constant time insertion and removal of elements , as well as constant time access\&.
-.IP "\(bu" 2
-The object provided by the \fBVector\fP library is an array type container that:
-.IP "  1." 6
-It only must contain addresses of HEAP\&. The insertion must be done by calling the Memory Manager, that is: any new insertion will have to be done with pointers to HEAP\&.
-.IP "    2." 8
-Resides in contiguous memory, accessible by arithmetic of pointers
-.IP "    3." 8
-It is generic: it supports any types: we identifie the information not by its type, but by its size
-.IP "    4." 8
-The object resides in HEAP
-.IP "    5." 8
-The object is self-expanding: doubles its capacity automatically if the insertion of a new element requires it
-.IP "    6." 8
-The library provides insertion of items from file\&.
 .PP
-
+The object provided by the \fBVector\fP library is an array type container that:
+.PP
+.IP "1." 4
+It only must contain addresses of HEAP\&. The insertion must be done by calling the Memory Manager, that is: any new insertion will have to be done with pointers to HEAP\&.
+.IP "  2." 6
+Resides in contiguous memory, accessible by arithmetic of pointers
+.IP "  3." 6
+It is generic: it supports any types: we identifie the information not by its type, but by its size
+.IP "  4." 6
+The object resides in HEAP
+.IP "  5." 6
+The object is self-expanding: doubles its capacity automatically if the insertion of a new element requires it
+.IP "  6." 6
+The library provides insertion of items from file\&.
 .PP
 
 .PP

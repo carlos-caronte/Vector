@@ -68,7 +68,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>A generic and dynamic container that expands automatically as elements are added.  
+<p>A generic and dynamic container that expands automatically as elements are added. The maximum storage capacity is (2^(sizeof(int) * 8 - 1)) / v-&gt;size_ele * 8 [vector_Max_capacity].  
  <a href="structVector.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="vector_8h_source.html">vector.h</a>&gt;</code></p>
@@ -93,9 +93,10 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a2efc2de85653a5aeefb0b1059a1ada76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A generic and dynamic container that expands automatically as elements are added. </p>
-<p>The library supports amortized constant time insertion and removal of elements , as well as constant time access.</p><ul>
-<li>The object provided by the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> library is an array type container that:<ol type="1">
+<div class="textblock"><p>A generic and dynamic container that expands automatically as elements are added. The maximum storage capacity is (2^(sizeof(int) * 8 - 1)) / v-&gt;size_ele * 8 [vector_Max_capacity]. </p>
+<p>The library supports amortized constant time insertion and removal of elements , as well as constant time access.</p>
+<p>The object provided by the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> library is an array type container that:</p>
+<ol type="1">
 <li>It only must contain addresses of HEAP. The insertion must be done by calling the Memory Manager, that is: any new insertion will have to be done with pointers to HEAP.<ol type="a">
 <li>Resides in contiguous memory, accessible by arithmetic of pointers</li>
 <li>It is generic: it supports any types: we identifie the information not by its type, but by its size</li>
@@ -105,8 +106,6 @@ Public Attributes</h2></td></tr>
 </ol>
 </li>
 </ol>
-</li>
-</ul>
 <pre class="fragment">          The insertion of elements is always by reference. If the item
           were created in main, (reside in STACK) the object pointed by
           our stored direction, is released when the application finishes.
@@ -243,7 +242,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>'s data type. It has to be the returned value of 'sizeof(<a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>'s data type)'</p>
+<p><a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>'s data type. It has to be the returned value of 'sizeof(<a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>'s data type)'</p>
 <p>The constructor requires that the client element size be identified up front.</p>
 <p>Since it doesn’t (and will never) know the true data type, it needs the size so it at least knows how many bytes to replicate behind the scenes with every call to manage data. </p>
 
@@ -260,7 +259,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Number of elements in <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object </p>
+<p>Number of elements in <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object </p>
 
 </div>
 </div>

@@ -87,69 +87,71 @@ Include dependency graph for vector.c:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aa0af95c29255c4d41408a210ffdb7146"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#aa0af95c29255c4d41408a210ffdb7146">vector_Init</a> (int capacity, size_t ele_size, int(*compar)(const void *a, const void *b))</td></tr>
-<tr class="memdesc:aa0af95c29255c4d41408a210ffdb7146"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Initializes <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object with the given capacity.  <a href="#aa0af95c29255c4d41408a210ffdb7146">More...</a><br /></td></tr>
+<tr class="memdesc:aa0af95c29255c4d41408a210ffdb7146"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Initializes <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object with the given capacity.  <a href="#aa0af95c29255c4d41408a210ffdb7146">More...</a><br /></td></tr>
 <tr class="separator:aa0af95c29255c4d41408a210ffdb7146"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa24caeb16230839f74de34ff2e6f9e2a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#aa24caeb16230839f74de34ff2e6f9e2a">vector_Capacity</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v)</td></tr>
-<tr class="memdesc:aa24caeb16230839f74de34ff2e6f9e2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the capacity of the specified <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>. The capacity is the maximum number of elements a <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> can hold before it has to be resized. Capacity has to be greater than Zero.  <a href="#aa24caeb16230839f74de34ff2e6f9e2a">More...</a><br /></td></tr>
+<tr class="memdesc:aa24caeb16230839f74de34ff2e6f9e2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the capacity of the specified <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>. The capacity is the maximum number of elements a <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> can hold before it has to be resized. Capacity has to be greater than Zero.  <a href="#aa24caeb16230839f74de34ff2e6f9e2a">More...</a><br /></td></tr>
 <tr class="separator:aa24caeb16230839f74de34ff2e6f9e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60d418c3f4df95e8c3eb403e2eb05c0a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a60d418c3f4df95e8c3eb403e2eb05c0a">vector_isEquals</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v1, const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v2)</td></tr>
-<tr class="memdesc:a60d418c3f4df95e8c3eb403e2eb05c0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">It Compares the size of elements of two <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> objects (v1, v2) and if are equals, it compares the first n bytes of memory area of v1-&gt;data and v2-&gt;data.  <a href="#a60d418c3f4df95e8c3eb403e2eb05c0a">More...</a><br /></td></tr>
+<tr class="memdesc:a60d418c3f4df95e8c3eb403e2eb05c0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">It Compares the size of elements of two <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> objects (v1, v2) and if are equals, it compares the first n bytes of memory area of v1-&gt;data and v2-&gt;data.  <a href="#a60d418c3f4df95e8c3eb403e2eb05c0a">More...</a><br /></td></tr>
 <tr class="separator:a60d418c3f4df95e8c3eb403e2eb05c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85236588e5cf736e71c40248c464fcf3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a85236588e5cf736e71c40248c464fcf3">vector_isEmpty</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v)</td></tr>
-<tr class="memdesc:a85236588e5cf736e71c40248c464fcf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns True if <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is Empty, that is when its length is equal to Zero.  <a href="#a85236588e5cf736e71c40248c464fcf3">More...</a><br /></td></tr>
+<tr class="memdesc:a85236588e5cf736e71c40248c464fcf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns True if <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is Empty, that is when its length is equal to Zero.  <a href="#a85236588e5cf736e71c40248c464fcf3">More...</a><br /></td></tr>
 <tr class="separator:a85236588e5cf736e71c40248c464fcf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74cf386822027acb2566bcffe1bbe1c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a74cf386822027acb2566bcffe1bbe1c8">vector_Len</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v)</td></tr>
-<tr class="memdesc:a74cf386822027acb2566bcffe1bbe1c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>, the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>'s length.  <a href="#a74cf386822027acb2566bcffe1bbe1c8">More...</a><br /></td></tr>
+<tr class="memdesc:a74cf386822027acb2566bcffe1bbe1c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>, the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>'s length.  <a href="#a74cf386822027acb2566bcffe1bbe1c8">More...</a><br /></td></tr>
 <tr class="separator:a74cf386822027acb2566bcffe1bbe1c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee81b5e68404e6349c674eb22dd332b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#aee81b5e68404e6349c674eb22dd332b7">vector_Pos_Err</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, int position)</td></tr>
-<tr class="memdesc:aee81b5e68404e6349c674eb22dd332b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control if supplied position is out of range or <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is empty.  <a href="#aee81b5e68404e6349c674eb22dd332b7">More...</a><br /></td></tr>
+<tr class="memdesc:aee81b5e68404e6349c674eb22dd332b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control if supplied position is out of range or <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is empty.  <a href="#aee81b5e68404e6349c674eb22dd332b7">More...</a><br /></td></tr>
 <tr class="separator:aee81b5e68404e6349c674eb22dd332b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e27dec4fb75f3fcecd469b40ead28b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a4e27dec4fb75f3fcecd469b40ead28b7">vector_Max_capacity</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v)</td></tr>
+<tr class="separator:a4e27dec4fb75f3fcecd469b40ead28b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa214d4ebf16a51d4c628e150ab361368"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#aa214d4ebf16a51d4c628e150ab361368">vector_Begin</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, void *item)</td></tr>
-<tr class="memdesc:aa214d4ebf16a51d4c628e150ab361368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Item at <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>'s beginning.  <a href="#aa214d4ebf16a51d4c628e150ab361368">More...</a><br /></td></tr>
+<tr class="memdesc:aa214d4ebf16a51d4c628e150ab361368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Item at <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>'s beginning.  <a href="#aa214d4ebf16a51d4c628e150ab361368">More...</a><br /></td></tr>
 <tr class="separator:aa214d4ebf16a51d4c628e150ab361368"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52cabdad7272f0cd77fe4170d764e187"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a52cabdad7272f0cd77fe4170d764e187">vector_End</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, void *item)</td></tr>
-<tr class="memdesc:a52cabdad7272f0cd77fe4170d764e187"><td class="mdescLeft">&#160;</td><td class="mdescRight">Item at <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>'s ending.  <a href="#a52cabdad7272f0cd77fe4170d764e187">More...</a><br /></td></tr>
+<tr class="memdesc:a52cabdad7272f0cd77fe4170d764e187"><td class="mdescLeft">&#160;</td><td class="mdescRight">Item at <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>'s ending.  <a href="#a52cabdad7272f0cd77fe4170d764e187">More...</a><br /></td></tr>
 <tr class="separator:a52cabdad7272f0cd77fe4170d764e187"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a068e33a09d0133195eee103642d3df9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a068e33a09d0133195eee103642d3df9d">vector_Item</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, void *item, int position)</td></tr>
-<tr class="memdesc:a068e33a09d0133195eee103642d3df9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Item at position in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object.  <a href="#a068e33a09d0133195eee103642d3df9d">More...</a><br /></td></tr>
+<tr class="memdesc:a068e33a09d0133195eee103642d3df9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Item at position in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object.  <a href="#a068e33a09d0133195eee103642d3df9d">More...</a><br /></td></tr>
 <tr class="separator:a068e33a09d0133195eee103642d3df9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac474c20c82242888a87102484ff900d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#ac474c20c82242888a87102484ff900d1">vector_Iter</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, void *item, int index)</td></tr>
-<tr class="memdesc:ac474c20c82242888a87102484ff900d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Itertools, returns item at position in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object. If index==0, begin; if index==-1, end.  <a href="#ac474c20c82242888a87102484ff900d1">More...</a><br /></td></tr>
+<tr class="memdesc:ac474c20c82242888a87102484ff900d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Itertools, returns item at position in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object. If index==0, begin; if index==-1, end.  <a href="#ac474c20c82242888a87102484ff900d1">More...</a><br /></td></tr>
 <tr class="separator:ac474c20c82242888a87102484ff900d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a960a495404910fd7a3d6e752c3adb4a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a960a495404910fd7a3d6e752c3adb4a3">vector_Iter_next</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, void *item, int index)</td></tr>
-<tr class="memdesc:a960a495404910fd7a3d6e752c3adb4a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Itertools, returns Item at index+1 in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object.  <a href="#a960a495404910fd7a3d6e752c3adb4a3">More...</a><br /></td></tr>
+<tr class="memdesc:a960a495404910fd7a3d6e752c3adb4a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Itertools, returns Item at index+1 in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object.  <a href="#a960a495404910fd7a3d6e752c3adb4a3">More...</a><br /></td></tr>
 <tr class="separator:a960a495404910fd7a3d6e752c3adb4a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09690bc7113546bf7206ea7c212a7c21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a09690bc7113546bf7206ea7c212a7c21">vector_Filter</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, void *value, <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *slice)</td></tr>
 <tr class="memdesc:a09690bc7113546bf7206ea7c212a7c21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binary Search of an item. It copies in 'vector_t *slice' all the items that match with the supplied value by the client.  <a href="#a09690bc7113546bf7206ea7c212a7c21">More...</a><br /></td></tr>
 <tr class="separator:a09690bc7113546bf7206ea7c212a7c21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a317a7692f10d01ec08bbdfbd774d80de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a317a7692f10d01ec08bbdfbd774d80de">vector_Fold</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, void(*fn)(void *, void *, void *), void *result)</td></tr>
-<tr class="memdesc:a317a7692f10d01ec08bbdfbd774d80de"><td class="mdescLeft">&#160;</td><td class="mdescRight">A fold function that collects all of the elements in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object together. For example, if we have an object of [a,b,c...] the end result will be (...((a+b)+c)+...).  <a href="#a317a7692f10d01ec08bbdfbd774d80de">More...</a><br /></td></tr>
+<tr class="memdesc:a317a7692f10d01ec08bbdfbd774d80de"><td class="mdescLeft">&#160;</td><td class="mdescRight">A fold function that collects all of the elements in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object together. For example, if we have an object of [a,b,c...] the end result will be (...((a+b)+c)+...).  <a href="#a317a7692f10d01ec08bbdfbd774d80de">More...</a><br /></td></tr>
 <tr class="separator:a317a7692f10d01ec08bbdfbd774d80de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8814068dc08f4c0296661579d9925ea1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a8814068dc08f4c0296661579d9925ea1">vector_Pattern</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, const char *pattern, <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *slice)</td></tr>
 <tr class="memdesc:a8814068dc08f4c0296661579d9925ea1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the strings that matches the pattern in one slice. In this case, the search is, at least, Big-O lineal time of complexity. We use the C's library 'fnmatch' to pattern matching. The pattern may include the following special characters:  <a href="#a8814068dc08f4c0296661579d9925ea1">More...</a><br /></td></tr>
 <tr class="separator:a8814068dc08f4c0296661579d9925ea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c6a3eec39b6034333c110233751e1b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a3c6a3eec39b6034333c110233751e1b6">vector_Slice</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *slice, int from, int to)</td></tr>
-<tr class="memdesc:a3c6a3eec39b6034333c110233751e1b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slice of items from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object.  <a href="#a3c6a3eec39b6034333c110233751e1b6">More...</a><br /></td></tr>
+<tr class="memdesc:a3c6a3eec39b6034333c110233751e1b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slice of items from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object.  <a href="#a3c6a3eec39b6034333c110233751e1b6">More...</a><br /></td></tr>
 <tr class="separator:a3c6a3eec39b6034333c110233751e1b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ed07114d280fdf355614827270a4c23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a5ed07114d280fdf355614827270a4c23">vector_Has</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, void *value)</td></tr>
 <tr class="memdesc:a5ed07114d280fdf355614827270a4c23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binary Search of an item. It uses qsort.  <a href="#a5ed07114d280fdf355614827270a4c23">More...</a><br /></td></tr>
 <tr class="separator:a5ed07114d280fdf355614827270a4c23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a471ecfb9a9be43d4ab1f4f6a01fd561b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a471ecfb9a9be43d4ab1f4f6a01fd561b">vector_Insert</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, void *item)</td></tr>
-<tr class="memdesc:a471ecfb9a9be43d4ab1f4f6a01fd561b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert (an item of data) at the end of <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object.  <a href="#a471ecfb9a9be43d4ab1f4f6a01fd561b">More...</a><br /></td></tr>
+<tr class="memdesc:a471ecfb9a9be43d4ab1f4f6a01fd561b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert (an item of data) at the end of <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object.  <a href="#a471ecfb9a9be43d4ab1f4f6a01fd561b">More...</a><br /></td></tr>
 <tr class="separator:a471ecfb9a9be43d4ab1f4f6a01fd561b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a921e7437350bccb4029d32ac091ded35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a921e7437350bccb4029d32ac091ded35">vector_Insert_from_file</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, const char *filename, const char delimiter)</td></tr>
 <tr class="separator:a921e7437350bccb4029d32ac091ded35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf25e82e5466548a4687ae4c76b806d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#aaf25e82e5466548a4687ae4c76b806d0">vector_Map</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, void(*fn)(void *))</td></tr>
-<tr class="memdesc:aaf25e82e5466548a4687ae4c76b806d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the function fn to each element of the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>.  <a href="#aaf25e82e5466548a4687ae4c76b806d0">More...</a><br /></td></tr>
+<tr class="memdesc:aaf25e82e5466548a4687ae4c76b806d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the function fn to each element of the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>.  <a href="#aaf25e82e5466548a4687ae4c76b806d0">More...</a><br /></td></tr>
 <tr class="separator:aaf25e82e5466548a4687ae4c76b806d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81dd37943b5ec98540f497085553bdc7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a81dd37943b5ec98540f497085553bdc7">vector_Remove</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, int position)</td></tr>
-<tr class="memdesc:a81dd37943b5ec98540f497085553bdc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove (an item of data ) from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object. We move contigous memory from (position + 1) until (v-&gt;len -1) to position. There is not empty spaces inter records, and v-&gt;len now is len - 1.  <a href="#a81dd37943b5ec98540f497085553bdc7">More...</a><br /></td></tr>
+<tr class="memdesc:a81dd37943b5ec98540f497085553bdc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove (an item of data ) from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object. We move contigous memory from (position + 1) until (v-&gt;len -1) to position. There is not empty spaces inter records, and v-&gt;len now is len - 1.  <a href="#a81dd37943b5ec98540f497085553bdc7">More...</a><br /></td></tr>
 <tr class="separator:a81dd37943b5ec98540f497085553bdc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9efd745c0aa5329ad752c3da0d09ff0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#ac9efd745c0aa5329ad752c3da0d09ff0">vector_Remove_Pattern</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, const char *pattern)</td></tr>
-<tr class="memdesc:ac9efd745c0aa5329ad752c3da0d09ff0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all the strings that matches the pattern from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object. We call <a class="el" href="vector_8c.html#a81dd37943b5ec98540f497085553bdc7" title="Remove (an item of data ) from the Vector object. We move contigous memory from (position + 1) until ...">vector_Remove()</a> to remove each record. We use the C's library 'fnmatch' to pattern matching. The pattern may include the following special characters:  <a href="#ac9efd745c0aa5329ad752c3da0d09ff0">More...</a><br /></td></tr>
+<tr class="memdesc:ac9efd745c0aa5329ad752c3da0d09ff0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all the strings that matches the pattern from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object. We call <a class="el" href="vector_8c.html#a81dd37943b5ec98540f497085553bdc7" title="Remove (an item of data ) from the Vector object. We move contigous memory from (position + 1) until ...">vector_Remove()</a> to remove each record. We use the C's library 'fnmatch' to pattern matching. The pattern may include the following special characters:  <a href="#ac9efd745c0aa5329ad752c3da0d09ff0">More...</a><br /></td></tr>
 <tr class="separator:ac9efd745c0aa5329ad752c3da0d09ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb04bc4ba2a1ad6abc827ba1654e23f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#acb04bc4ba2a1ad6abc827ba1654e23f0">vector_Remove_value</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, void *value)</td></tr>
-<tr class="memdesc:acb04bc4ba2a1ad6abc827ba1654e23f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove one item of data from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object. We call <a class="el" href="vector_8c.html#a81dd37943b5ec98540f497085553bdc7" title="Remove (an item of data ) from the Vector object. We move contigous memory from (position + 1) until ...">vector_Remove()</a> function to remove the item.  <a href="#acb04bc4ba2a1ad6abc827ba1654e23f0">More...</a><br /></td></tr>
+<tr class="memdesc:acb04bc4ba2a1ad6abc827ba1654e23f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove one item of data from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object. We call <a class="el" href="vector_8c.html#a81dd37943b5ec98540f497085553bdc7" title="Remove (an item of data ) from the Vector object. We move contigous memory from (position + 1) until ...">vector_Remove()</a> function to remove the item.  <a href="#acb04bc4ba2a1ad6abc827ba1654e23f0">More...</a><br /></td></tr>
 <tr class="separator:acb04bc4ba2a1ad6abc827ba1654e23f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d950527efaf142f1cd604a9f83b0a48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a0d950527efaf142f1cd604a9f83b0a48">vector_Sort</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v)</td></tr>
 <tr class="memdesc:a0d950527efaf142f1cd604a9f83b0a48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Qsort ordering function.  <a href="#a0d950527efaf142f1cd604a9f83b0a48">More...</a><br /></td></tr>
@@ -349,7 +351,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Item at <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>'s beginning. </p>
+<p>Item at <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>'s beginning. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>Pointer to vector_t type variable </td></tr>
@@ -357,7 +359,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK if <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK if <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty </dd></dl>
 
 </div>
 </div>
@@ -377,14 +379,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the capacity of the specified <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>. The capacity is the maximum number of elements a <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> can hold before it has to be resized. Capacity has to be greater than Zero. </p>
+<p>Returns the capacity of the specified <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>. The capacity is the maximum number of elements a <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> can hold before it has to be resized. Capacity has to be greater than Zero. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">v</td><td><a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object whose capacity is being returned </td></tr>
+    <tr><td class="paramname">v</td><td><a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object whose capacity is being returned </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The capacity of the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The capacity of the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object </dd></dl>
 
 </div>
 </div>
@@ -414,7 +416,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Item at <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>'s ending. </p>
+<p>Item at <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>'s ending. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>Pointer to vector_t type variable </td></tr>
@@ -422,7 +424,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK if <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK if <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty </dd></dl>
 
 </div>
 </div>
@@ -467,7 +469,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK if the element was found, or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty or V_ERR_VALUE_NOT_FOUND V_ERR_INVALID_ARGUMENT </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK if the element was found and at most slice-&gt;capacity items, or</dd></dl>
+<p>V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty or V_ERR_VALUE_NOT_FOUND V_ERR_INVALID_ARGUMENT </p>
 
 </div>
 </div>
@@ -503,16 +506,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>A fold function that collects all of the elements in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object together. For example, if we have an object of [a,b,c...] the end result will be (...((a+b)+c)+...). </p>
+<p>A fold function that collects all of the elements in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object together. For example, if we have an object of [a,b,c...] the end result will be (...((a+b)+c)+...). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">v</td><td>The <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> on which this operation is performed </td></tr>
+    <tr><td class="paramname">v</td><td>The <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> on which this operation is performed </td></tr>
     <tr><td class="paramname">fn</td><td>The operation function that is to be invoked on each element </td></tr>
     <tr><td class="paramname">result</td><td>The pointer which will collect the end result </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty </dd></dl>
 
 </div>
 </div>
@@ -550,7 +553,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK if the element was found, or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty or V_ERR_VALUE_NOT_FOUND. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK if the element was found, or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty or V_ERR_VALUE_NOT_FOUND. </dd></dl>
 
 </div>
 </div>
@@ -586,11 +589,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor. Initializes <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object with the given capacity. </p>
+<p>Constructor. Initializes <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object with the given capacity. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">capacity</td><td>Capacity of the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object to be created </td></tr>
-    <tr><td class="paramname">ele_size</td><td>To identifie <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>'s data type. The constructor requires that the client element size be identified up front. Since it doesn’t (and will never) know the true data type, it needs the size so it at least knows how many bytes to replicate behind the scenes with every call to manage data. </td></tr>
+    <tr><td class="paramname">capacity</td><td>Capacity of the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object to be created </td></tr>
+    <tr><td class="paramname">ele_size</td><td>To identifie <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>'s data type. The constructor requires that the client element size be identified up front. Since it doesn’t (and will never) know the true data type, it needs the size so it at least knows how many bytes to replicate behind the scenes with every call to manage data. </td></tr>
     <tr><td class="paramname">compar</td><td>Comparing function pointer </td></tr>
   </table>
   </dd>
@@ -625,11 +628,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Insert (an item of data) at the end of <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object. </p>
+<p>Insert (an item of data) at the end of <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>Pointer to vector_t type variable </td></tr>
-    <tr><td class="paramname">item</td><td>Value to insert in <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object </td></tr>
+    <tr><td class="paramname">item</td><td>Value to insert in <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object </td></tr>
   </table>
   </dd>
 </dl>
@@ -695,7 +698,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns True if <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is Empty, that is when its length is equal to Zero. </p>
+<p>Returns True if <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is Empty, that is when its length is equal to Zero. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>Pointer to vector_t type </td></tr>
@@ -732,7 +735,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>It Compares the size of elements of two <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> objects (v1, v2) and if are equals, it compares the first n bytes of memory area of v1-&gt;data and v2-&gt;data. </p>
+<p>It Compares the size of elements of two <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> objects (v1, v2) and if are equals, it compares the first n bytes of memory area of v1-&gt;data and v2-&gt;data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v1</td><td>A vector object </td></tr>
@@ -776,7 +779,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Item at position in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object. </p>
+<p>Item at position in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>Pointer to vector_t type variable </td></tr>
@@ -785,7 +788,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
 
 </div>
 </div>
@@ -821,7 +824,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Itertools, returns item at position in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object. If index==0, begin; if index==-1, end. </p>
+<p>Itertools, returns item at position in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object. If index==0, begin; if index==-1, end. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>Pointer to vector_t type variable </td></tr>
@@ -830,7 +833,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
 
 </div>
 </div>
@@ -866,7 +869,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Itertools, returns Item at index+1 in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object. </p>
+<p>Itertools, returns Item at index+1 in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>Pointer to vector_t type variable </td></tr>
@@ -875,7 +878,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
 
 </div>
 </div>
@@ -895,14 +898,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the number of elements in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>, the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>'s length. </p>
+<p>Returns the number of elements in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>, the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>'s length. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>Pointer to vector_t type </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>v-&gt;len, the number of elements in <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>v-&gt;len, the number of elements in <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> </dd></dl>
 
 </div>
 </div>
@@ -932,15 +935,40 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Applies the function fn to each element of the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a>. </p>
+<p>Applies the function fn to each element of the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">v</td><td><a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object on which this operation is performed </td></tr>
-    <tr><td class="paramname">fn</td><td>Operation function that is to be invoked on each <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> element </td></tr>
+    <tr><td class="paramname">v</td><td><a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object on which this operation is performed </td></tr>
+    <tr><td class="paramname">fn</td><td>Operation function that is to be invoked on each <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> element </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty </dd></dl>
+
+</div>
+</div>
+<a id="a4e27dec4fb75f3fcecd469b40ead28b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e27dec4fb75f3fcecd469b40ead28b7">&#9670;&nbsp;</a></span>vector_Max_capacity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vector_Max_capacity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -986,11 +1014,11 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">v</td><td>A pointer to vector_t objet </td></tr>
     <tr><td class="paramname">pattern</td><td>Pattern searched. It is a string. </td></tr>
-    <tr><td class="paramname">slice</td><td><a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object pointer to return the slice </td></tr>
+    <tr><td class="paramname">slice</td><td><a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object pointer to return the slice </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK if the element was found, or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty or V_ERR_VALUE_NOT_FOUND V_ERR_INVALID ARGUMENT It returns items until it is reached the capacity of slice </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK if the element was found, or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty or V_ERR_VALUE_NOT_FOUND V_ERR_INVALID ARGUMENT It returns items until it is reached the capacity of slice </dd></dl>
 
 </div>
 </div>
@@ -1020,7 +1048,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Control if supplied position is out of range or <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is empty. </p>
+<p>Control if supplied position is out of range or <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is empty. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>Pointer to vector_t type variable </td></tr>
@@ -1028,7 +1056,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
 
 </div>
 </div>
@@ -1058,15 +1086,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Remove (an item of data ) from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object. We move contigous memory from (position + 1) until (v-&gt;len -1) to position. There is not empty spaces inter records, and v-&gt;len now is len - 1. </p>
+<p>Remove (an item of data ) from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object. We move contigous memory from (position + 1) until (v-&gt;len -1) to position. There is not empty spaces inter records, and v-&gt;len now is len - 1. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>Pointer to vector_t type variable </td></tr>
-    <tr><td class="paramname">position</td><td>Position to remove in <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object </td></tr>
+    <tr><td class="paramname">position</td><td>Position to remove in <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok </dd></dl>
 
 </div>
 </div>
@@ -1096,7 +1124,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Remove all the strings that matches the pattern from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object. We call <a class="el" href="vector_8c.html#a81dd37943b5ec98540f497085553bdc7" title="Remove (an item of data ) from the Vector object. We move contigous memory from (position + 1) until ...">vector_Remove()</a> to remove each record. We use the C's library 'fnmatch' to pattern matching. The pattern may include the following special characters: </p>
+<p>Remove all the strings that matches the pattern from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object. We call <a class="el" href="vector_8c.html#a81dd37943b5ec98540f497085553bdc7" title="Remove (an item of data ) from the Vector object. We move contigous memory from (position + 1) until ...">vector_Remove()</a> to remove each record. We use the C's library 'fnmatch' to pattern matching. The pattern may include the following special characters: </p>
 <ul>
 <li>Matches zero of more characters. ? Matches exactly one character.</li>
 </ul>
@@ -1109,7 +1137,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK if the element was found, or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty or V_ERR_VALUE_NOT_FOUND. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK if the element was found, or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty or V_ERR_VALUE_NOT_FOUND. </dd></dl>
 
 </div>
 </div>
@@ -1139,7 +1167,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Remove one item of data from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object. We call <a class="el" href="vector_8c.html#a81dd37943b5ec98540f497085553bdc7" title="Remove (an item of data ) from the Vector object. We move contigous memory from (position + 1) until ...">vector_Remove()</a> function to remove the item. </p>
+<p>Remove one item of data from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object. We call <a class="el" href="vector_8c.html#a81dd37943b5ec98540f497085553bdc7" title="Remove (an item of data ) from the Vector object. We move contigous memory from (position + 1) until ...">vector_Remove()</a> function to remove the item. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>Pointer to vector_t type variable </td></tr>
@@ -1147,7 +1175,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok V_ERR_VALUE_NOT_FOUND if value has not been found </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK if position is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if position is not ok V_ERR_VALUE_NOT_FOUND if value has not been found </dd></dl>
 
 </div>
 </div>
@@ -1189,7 +1217,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Slice of items from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> object. </p>
+<p>Slice of items from the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>Pointer to vector_t type variable </td></tr>
@@ -1199,7 +1227,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>V_OK if slice is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if slice is not ok V_ERR_INVALID_ARGUMENT </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK if slice is correct and <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is not empty V_ERR_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty V_ERR_OUT_OF_RANGE if slice is not ok V_ERR_INVALID_ARGUMENT </dd></dl>
 
 </div>
 </div>
@@ -1220,7 +1248,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Qsort ordering function. </p>
-<dl class="section return"><dt>Returns</dt><dd>V_OK or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>V_OK or V_IS_EMPTY if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty </dd></dl>
 
 </div>
 </div>
@@ -1258,7 +1286,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Position if the element was found, or -1 if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. ...">Vector</a> Object is empty or the value was not found. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Position if the element was found, or -1 if the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> Object is empty or the value was not found. </dd></dl>
 
 </div>
 </div>
