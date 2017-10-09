@@ -582,7 +582,7 @@ static bool vector_Heap(vector_t *v, void *item) {
     long long t_item = (long long) item;
     size_t i;
     size_t tam = sizeof(long long);
-    unsigned k = 1 << (tam * 8 - 1);
+    unsigned long long k = 1 << (tam * 8 - 1);
 
     for (i = 0; i < 24; i++) {
 
@@ -654,8 +654,10 @@ void vector_Insert(vector_t*v, void *item) {
         if (v->len == v->capacity) {
 
                 v->capacity *= 2; // Capacity is duplicated
+                int max_cty = vector_Max_capacity(v);
 
-                v_assert(vector_Capacity(v) < vector_Max_capacity(v),
+
+                v_assert((v->capacity < max_cty),
                                             V_ERR_MAX_CAPACITY);
 
                 v->data = realloc(v->data, v->capacity * v->ele_size);
