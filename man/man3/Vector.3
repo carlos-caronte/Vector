@@ -1,4 +1,4 @@
-.TH "Vector" 3 "Sun Oct 8 2017" "Version 0.1" "Vector" \" -*- nroff -*-
+.TH "Vector" 3 "Mon Oct 9 2017" "Version 0.1" "Vector" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -25,16 +25,13 @@ Vector \- A generic and dynamic container that expands automatically as elements
 .RI "size_t \fBele_size\fP"
 .br
 .ti -1c
+.RI "\fBvsafe_t\fP \fBsafe\fP"
+.br
+.ti -1c
+.RI "\fBvowner_t\fP \fBowner\fP"
+.br
+.ti -1c
 .RI "int(* \fBcompar\fP )(const void *, const void *)"
-.br
-.ti -1c
-.RI "void(* \fBDestroy\fP )(struct \fBVector\fP *v)"
-.br
-.ti -1c
-.RI "void(* \fBDestroy_pointer\fP )(struct \fBVector\fP *v)"
-.br
-.ti -1c
-.RI "void(* \fBDestroy_slice\fP )(struct \fBVector\fP *v)"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -108,12 +105,6 @@ Capacity, in number of elements\&. Capacity has to be greater than Zero
 Comparing Function pointer 
 .SS "void* Vector::data"
 Array to hold the information 
-.SS "void(* Vector::Destroy) (struct \fBVector\fP *v)"
-Destructor 
-.SS "void(* Vector::Destroy_pointer) (struct \fBVector\fP *v)"
-Destructor to use with the function vector_Insert_from_file\&. It frees the pointers created and then it calls Destroy 
-.SS "void(* Vector::Destroy_slice) (struct \fBVector\fP *v)"
-Destructor 
 .SS "size_t Vector::ele_size"
 \fBVector\fP's data type\&. It has to be the returned value of 'sizeof(\fBVector\fP's data type)'
 .PP
@@ -122,6 +113,10 @@ The constructor requires that the client element size be identified up front\&.
 Since it doesn’t (and will never) know the true data type, it needs the size so it at least knows how many bytes to replicate behind the scenes with every call to manage data\&. 
 .SS "int Vector::len"
 Number of elements in \fBVector\fP object 
+.SS "\fBvowner_t\fP Vector::owner"
+
+.SS "\fBvsafe_t\fP Vector::safe"
+
 
 .SH "Author"
 .PP 

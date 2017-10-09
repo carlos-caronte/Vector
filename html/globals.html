@@ -189,6 +189,9 @@ $(function() {
 <li>v_assert
 : <a class="el" href="vector_8h.html#a7f7b2b8c8c83d34a7b1a40c973cb2c76">vector.h</a>
 </li>
+<li>V_BORROWER
+: <a class="el" href="vector_8h.html#a7639858d87382873dbe98c51dda72703ae7ea4d22b33974db982e6fc9392ae0f4">vector.h</a>
+</li>
 <li>V_ERR_ALLOCATE_MEMORY
 : <a class="el" href="vector_8h.html#a8f5f2d49a722b54d5290baae5f9b6e6ba1caf10fbf171eddea8e500dc0d02bade">vector.h</a>
 </li>
@@ -222,19 +225,41 @@ $(function() {
 <li>V_OK
 : <a class="el" href="vector_8h.html#a8f5f2d49a722b54d5290baae5f9b6e6bac53794a2433010f3eb3364cf687c615f">vector.h</a>
 </li>
-<li>V_stat
-: <a class="el" href="vector_8h.html#a8f5f2d49a722b54d5290baae5f9b6e6b">vector.h</a>
+<li>V_OWNER
+: <a class="el" href="vector_8h.html#a7639858d87382873dbe98c51dda72703aa3a0c9a44283c380ec8b9ad690d922f9">vector.h</a>
+</li>
+<li>V_owner
+: <a class="el" href="vector_8h.html#a7639858d87382873dbe98c51dda72703">vector.h</a>
+</li>
+<li>V_safe
+: <a class="el" href="vector_8h.html#a4e482497ec976fea8829474ea06402b6">vector.h</a>
+</li>
+<li>V_SAFE
+: <a class="el" href="vector_8h.html#a4e482497ec976fea8829474ea06402b6ac08eb6501ad5ff41cb4bf324538a591b">vector.h</a>
+</li>
+<li>V_SLICE
+: <a class="el" href="vector_8h.html#a7639858d87382873dbe98c51dda72703a01e505b742a0b1b6d935eb01d7e75408">vector.h</a>
 </li>
 <li>v_stat
 : <a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">vector.h</a>
 </li>
+<li>V_stat
+: <a class="el" href="vector_8h.html#a8f5f2d49a722b54d5290baae5f9b6e6b">vector.h</a>
+</li>
+<li>V_UNSAFE
+: <a class="el" href="vector_8h.html#a4e482497ec976fea8829474ea06402b6a0e93966d979c08d5bbcf3f01ac93a0f0">vector.h</a>
+</li>
 <li>vector_Begin()
-: <a class="el" href="vector_8h.html#aa214d4ebf16a51d4c628e150ab361368">vector.h</a>
-, <a class="el" href="vector_8c.html#aa214d4ebf16a51d4c628e150ab361368">vector.c</a>
+: <a class="el" href="vector_8c.html#aa214d4ebf16a51d4c628e150ab361368">vector.c</a>
+, <a class="el" href="vector_8h.html#aa214d4ebf16a51d4c628e150ab361368">vector.h</a>
 </li>
 <li>vector_Capacity()
-: <a class="el" href="vector_8c.html#aa24caeb16230839f74de34ff2e6f9e2a">vector.c</a>
-, <a class="el" href="vector_8h.html#aa24caeb16230839f74de34ff2e6f9e2a">vector.h</a>
+: <a class="el" href="vector_8c.html#ab36a64e8fcdc33fe4caa96dbe44e573e">vector.c</a>
+, <a class="el" href="vector_8h.html#ab36a64e8fcdc33fe4caa96dbe44e573e">vector.h</a>
+</li>
+<li>vector_Destroy()
+: <a class="el" href="vector_8c.html#a0aff612c3fd74e128c155b347d7622fd">vector.c</a>
+, <a class="el" href="vector_8h.html#a0aff612c3fd74e128c155b347d7622fd">vector.h</a>
 </li>
 <li>vector_End()
 : <a class="el" href="vector_8c.html#a52cabdad7272f0cd77fe4170d764e187">vector.c</a>
@@ -261,64 +286,68 @@ $(function() {
 , <a class="el" href="vector_8h.html#a471ecfb9a9be43d4ab1f4f6a01fd561b">vector.h</a>
 </li>
 <li>vector_Insert_from_file()
-: <a class="el" href="vector_8h.html#a921e7437350bccb4029d32ac091ded35">vector.h</a>
-, <a class="el" href="vector_8c.html#a921e7437350bccb4029d32ac091ded35">vector.c</a>
+: <a class="el" href="vector_8c.html#a921e7437350bccb4029d32ac091ded35">vector.c</a>
+, <a class="el" href="vector_8h.html#a921e7437350bccb4029d32ac091ded35">vector.h</a>
 </li>
 <li>vector_isEmpty()
-: <a class="el" href="vector_8c.html#a85236588e5cf736e71c40248c464fcf3">vector.c</a>
-, <a class="el" href="vector_8h.html#a85236588e5cf736e71c40248c464fcf3">vector.h</a>
+: <a class="el" href="vector_8h.html#a85236588e5cf736e71c40248c464fcf3">vector.h</a>
+, <a class="el" href="vector_8c.html#a85236588e5cf736e71c40248c464fcf3">vector.c</a>
 </li>
 <li>vector_isEquals()
 : <a class="el" href="vector_8c.html#a60d418c3f4df95e8c3eb403e2eb05c0a">vector.c</a>
 , <a class="el" href="vector_8h.html#a60d418c3f4df95e8c3eb403e2eb05c0a">vector.h</a>
 </li>
 <li>vector_Item()
-: <a class="el" href="vector_8c.html#a068e33a09d0133195eee103642d3df9d">vector.c</a>
-, <a class="el" href="vector_8h.html#a068e33a09d0133195eee103642d3df9d">vector.h</a>
+: <a class="el" href="vector_8h.html#a068e33a09d0133195eee103642d3df9d">vector.h</a>
+, <a class="el" href="vector_8c.html#a068e33a09d0133195eee103642d3df9d">vector.c</a>
 </li>
 <li>vector_Iter()
-: <a class="el" href="vector_8h.html#ac474c20c82242888a87102484ff900d1">vector.h</a>
-, <a class="el" href="vector_8c.html#ac474c20c82242888a87102484ff900d1">vector.c</a>
+: <a class="el" href="vector_8c.html#ac474c20c82242888a87102484ff900d1">vector.c</a>
+, <a class="el" href="vector_8h.html#ac474c20c82242888a87102484ff900d1">vector.h</a>
 </li>
 <li>vector_Iter_next()
 : <a class="el" href="vector_8c.html#a960a495404910fd7a3d6e752c3adb4a3">vector.c</a>
 , <a class="el" href="vector_8h.html#a960a495404910fd7a3d6e752c3adb4a3">vector.h</a>
 </li>
 <li>vector_Len()
-: <a class="el" href="vector_8h.html#a74cf386822027acb2566bcffe1bbe1c8">vector.h</a>
-, <a class="el" href="vector_8c.html#a74cf386822027acb2566bcffe1bbe1c8">vector.c</a>
+: <a class="el" href="vector_8c.html#a74cf386822027acb2566bcffe1bbe1c8">vector.c</a>
+, <a class="el" href="vector_8h.html#a74cf386822027acb2566bcffe1bbe1c8">vector.h</a>
 </li>
 <li>vector_Map()
-: <a class="el" href="vector_8c.html#aaf25e82e5466548a4687ae4c76b806d0">vector.c</a>
-, <a class="el" href="vector_8h.html#aaf25e82e5466548a4687ae4c76b806d0">vector.h</a>
+: <a class="el" href="vector_8h.html#aaf25e82e5466548a4687ae4c76b806d0">vector.h</a>
+, <a class="el" href="vector_8c.html#aaf25e82e5466548a4687ae4c76b806d0">vector.c</a>
 </li>
 <li>vector_Max_capacity()
-: <a class="el" href="vector_8c.html#a4e27dec4fb75f3fcecd469b40ead28b7">vector.c</a>
-, <a class="el" href="vector_8h.html#a4e27dec4fb75f3fcecd469b40ead28b7">vector.h</a>
+: <a class="el" href="vector_8h.html#a5dba24a7cb71dbf39a825798dbae0226">vector.h</a>
+, <a class="el" href="vector_8c.html#a5dba24a7cb71dbf39a825798dbae0226">vector.c</a>
+</li>
+<li>vector_Owner()
+: <a class="el" href="vector_8h.html#ab4570a109a8206865226a2c74b40d4ec">vector.h</a>
+, <a class="el" href="vector_8c.html#ab4570a109a8206865226a2c74b40d4ec">vector.c</a>
 </li>
 <li>vector_Pattern()
 : <a class="el" href="vector_8h.html#a8814068dc08f4c0296661579d9925ea1">vector.h</a>
 , <a class="el" href="vector_8c.html#a8814068dc08f4c0296661579d9925ea1">vector.c</a>
 </li>
 <li>vector_Pos_Err()
-: <a class="el" href="vector_8c.html#aee81b5e68404e6349c674eb22dd332b7">vector.c</a>
-, <a class="el" href="vector_8h.html#aee81b5e68404e6349c674eb22dd332b7">vector.h</a>
+: <a class="el" href="vector_8h.html#aee81b5e68404e6349c674eb22dd332b7">vector.h</a>
+, <a class="el" href="vector_8c.html#aee81b5e68404e6349c674eb22dd332b7">vector.c</a>
 </li>
 <li>vector_Remove()
-: <a class="el" href="vector_8h.html#a81dd37943b5ec98540f497085553bdc7">vector.h</a>
-, <a class="el" href="vector_8c.html#a81dd37943b5ec98540f497085553bdc7">vector.c</a>
+: <a class="el" href="vector_8c.html#a81dd37943b5ec98540f497085553bdc7">vector.c</a>
+, <a class="el" href="vector_8h.html#a81dd37943b5ec98540f497085553bdc7">vector.h</a>
 </li>
 <li>vector_Remove_Pattern()
-: <a class="el" href="vector_8c.html#ac9efd745c0aa5329ad752c3da0d09ff0">vector.c</a>
-, <a class="el" href="vector_8h.html#ac9efd745c0aa5329ad752c3da0d09ff0">vector.h</a>
+: <a class="el" href="vector_8h.html#ac9efd745c0aa5329ad752c3da0d09ff0">vector.h</a>
+, <a class="el" href="vector_8c.html#ac9efd745c0aa5329ad752c3da0d09ff0">vector.c</a>
 </li>
 <li>vector_Remove_value()
 : <a class="el" href="vector_8c.html#acb04bc4ba2a1ad6abc827ba1654e23f0">vector.c</a>
 , <a class="el" href="vector_8h.html#acb04bc4ba2a1ad6abc827ba1654e23f0">vector.h</a>
 </li>
 <li>vector_Slice()
-: <a class="el" href="vector_8c.html#a3c6a3eec39b6034333c110233751e1b6">vector.c</a>
-, <a class="el" href="vector_8h.html#a20c6fd87aae480b59885b6bfe9a85274">vector.h</a>
+: <a class="el" href="vector_8h.html#a20c6fd87aae480b59885b6bfe9a85274">vector.h</a>
+, <a class="el" href="vector_8c.html#a3c6a3eec39b6034333c110233751e1b6">vector.c</a>
 </li>
 <li>vector_Sort()
 : <a class="el" href="vector_8c.html#a0d950527efaf142f1cd604a9f83b0a48">vector.c</a>
@@ -331,8 +360,14 @@ $(function() {
 : <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector.h</a>
 </li>
 <li>vector_Value()
-: <a class="el" href="vector_8c.html#a394f5d6ddfad49667c8423f647ad186f">vector.c</a>
-, <a class="el" href="vector_8h.html#a394f5d6ddfad49667c8423f647ad186f">vector.h</a>
+: <a class="el" href="vector_8h.html#a394f5d6ddfad49667c8423f647ad186f">vector.h</a>
+, <a class="el" href="vector_8c.html#a394f5d6ddfad49667c8423f647ad186f">vector.c</a>
+</li>
+<li>vowner_t
+: <a class="el" href="vector_8h.html#ae40e5e9008ec3d317f26cf7d5a1ffd4c">vector.h</a>
+</li>
+<li>vsafe_t
+: <a class="el" href="vector_8h.html#a387691ca4381756844d7f159971c5595">vector.h</a>
 </li>
 </ul>
 </div><!-- contents -->

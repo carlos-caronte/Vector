@@ -83,14 +83,12 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a6d49b240ab4a8ccb9b1c7297e78511da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ff3b09498f43b6d1225b70c76428921"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVector.html#a4ff3b09498f43b6d1225b70c76428921">ele_size</a></td></tr>
 <tr class="separator:a4ff3b09498f43b6d1225b70c76428921"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f093229a20e41fb3c226856e1e6990e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a387691ca4381756844d7f159971c5595">vsafe_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVector.html#a4f093229a20e41fb3c226856e1e6990e">safe</a></td></tr>
+<tr class="separator:a4f093229a20e41fb3c226856e1e6990e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65189b940faa1d239d00d9e31f9b5c55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#ae40e5e9008ec3d317f26cf7d5a1ffd4c">vowner_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVector.html#a65189b940faa1d239d00d9e31f9b5c55">owner</a></td></tr>
+<tr class="separator:a65189b940faa1d239d00d9e31f9b5c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a878f53535bc6a2f2dcbed86cc993216c"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVector.html#a878f53535bc6a2f2dcbed86cc993216c">compar</a> )(const void *, const void *)</td></tr>
 <tr class="separator:a878f53535bc6a2f2dcbed86cc993216c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a780c3355a80ed925d0e2255f67027a63"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVector.html#a780c3355a80ed925d0e2255f67027a63">Destroy</a> )(struct <a class="el" href="structVector.html">Vector</a> *v)</td></tr>
-<tr class="separator:a780c3355a80ed925d0e2255f67027a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d9780a6781c0d08a0a1b2c614abdd1a"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVector.html#a7d9780a6781c0d08a0a1b2c614abdd1a">Destroy_pointer</a> )(struct <a class="el" href="structVector.html">Vector</a> *v)</td></tr>
-<tr class="separator:a7d9780a6781c0d08a0a1b2c614abdd1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2efc2de85653a5aeefb0b1059a1ada76"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVector.html#a2efc2de85653a5aeefb0b1059a1ada76">Destroy_slice</a> )(struct <a class="el" href="structVector.html">Vector</a> *v)</td></tr>
-<tr class="separator:a2efc2de85653a5aeefb0b1059a1ada76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A generic and dynamic container that expands automatically as elements are added. The maximum storage capacity is (2^(sizeof(int) * 8 - 1)) / v-&gt;size_ele * 8 [vector_Max_capacity]. </p>
@@ -186,51 +184,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a780c3355a80ed925d0e2255f67027a63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a780c3355a80ed925d0e2255f67027a63">&#9670;&nbsp;</a></span>Destroy</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void(* Vector::Destroy) (struct <a class="el" href="structVector.html">Vector</a> *v)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Destructor </p>
-
-</div>
-</div>
-<a id="a7d9780a6781c0d08a0a1b2c614abdd1a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d9780a6781c0d08a0a1b2c614abdd1a">&#9670;&nbsp;</a></span>Destroy_pointer</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void(* Vector::Destroy_pointer) (struct <a class="el" href="structVector.html">Vector</a> *v)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Destructor to use with the function vector_Insert_from_file. It frees the pointers created and then it calls Destroy </p>
-
-</div>
-</div>
-<a id="a2efc2de85653a5aeefb0b1059a1ada76"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2efc2de85653a5aeefb0b1059a1ada76">&#9670;&nbsp;</a></span>Destroy_slice</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void(* Vector::Destroy_slice) (struct <a class="el" href="structVector.html">Vector</a> *v)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Destructor </p>
-
-</div>
-</div>
 <a id="a4ff3b09498f43b6d1225b70c76428921"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4ff3b09498f43b6d1225b70c76428921">&#9670;&nbsp;</a></span>ele_size</h2>
 
@@ -260,6 +213,34 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Number of elements in <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object </p>
+
+</div>
+</div>
+<a id="a65189b940faa1d239d00d9e31f9b5c55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65189b940faa1d239d00d9e31f9b5c55">&#9670;&nbsp;</a></span>owner</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="vector_8h.html#ae40e5e9008ec3d317f26cf7d5a1ffd4c">vowner_t</a> Vector::owner</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4f093229a20e41fb3c226856e1e6990e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f093229a20e41fb3c226856e1e6990e">&#9670;&nbsp;</a></span>safe</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="vector_8h.html#a387691ca4381756844d7f159971c5595">vsafe_t</a> Vector::safe</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

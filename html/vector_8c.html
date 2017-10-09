@@ -86,12 +86,15 @@ Include dependency graph for vector.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a0aff612c3fd74e128c155b347d7622fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a0aff612c3fd74e128c155b347d7622fd">vector_Destroy</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v)</td></tr>
+<tr class="memdesc:a0aff612c3fd74e128c155b347d7622fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. Management of memory: free the data array in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object.  <a href="#a0aff612c3fd74e128c155b347d7622fd">More...</a><br /></td></tr>
+<tr class="separator:a0aff612c3fd74e128c155b347d7622fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0af95c29255c4d41408a210ffdb7146"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#aa0af95c29255c4d41408a210ffdb7146">vector_Init</a> (int capacity, size_t ele_size, int(*compar)(const void *a, const void *b))</td></tr>
 <tr class="memdesc:aa0af95c29255c4d41408a210ffdb7146"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Initializes <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object with the given capacity.  <a href="#aa0af95c29255c4d41408a210ffdb7146">More...</a><br /></td></tr>
 <tr class="separator:aa0af95c29255c4d41408a210ffdb7146"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa24caeb16230839f74de34ff2e6f9e2a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#aa24caeb16230839f74de34ff2e6f9e2a">vector_Capacity</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v)</td></tr>
-<tr class="memdesc:aa24caeb16230839f74de34ff2e6f9e2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the capacity of the specified <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>. The capacity is the maximum number of elements a <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> can hold before it has to be resized. Capacity has to be greater than Zero.  <a href="#aa24caeb16230839f74de34ff2e6f9e2a">More...</a><br /></td></tr>
-<tr class="separator:aa24caeb16230839f74de34ff2e6f9e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab36a64e8fcdc33fe4caa96dbe44e573e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#ab36a64e8fcdc33fe4caa96dbe44e573e">vector_Capacity</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v)</td></tr>
+<tr class="memdesc:ab36a64e8fcdc33fe4caa96dbe44e573e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the capacity of the specified <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>. The capacity is the maximum number of elements a <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> can hold before it has to be resized. Capacity has to be greater than Zero.  <a href="#ab36a64e8fcdc33fe4caa96dbe44e573e">More...</a><br /></td></tr>
+<tr class="separator:ab36a64e8fcdc33fe4caa96dbe44e573e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60d418c3f4df95e8c3eb403e2eb05c0a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a60d418c3f4df95e8c3eb403e2eb05c0a">vector_isEquals</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v1, const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v2)</td></tr>
 <tr class="memdesc:a60d418c3f4df95e8c3eb403e2eb05c0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">It Compares the size of elements of two <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> objects (v1, v2) and if are equals, it compares the first n bytes of memory area of v1-&gt;data and v2-&gt;data.  <a href="#a60d418c3f4df95e8c3eb403e2eb05c0a">More...</a><br /></td></tr>
 <tr class="separator:a60d418c3f4df95e8c3eb403e2eb05c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -101,11 +104,13 @@ Functions</h2></td></tr>
 <tr class="memitem:a74cf386822027acb2566bcffe1bbe1c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a74cf386822027acb2566bcffe1bbe1c8">vector_Len</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v)</td></tr>
 <tr class="memdesc:a74cf386822027acb2566bcffe1bbe1c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>, the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>'s length.  <a href="#a74cf386822027acb2566bcffe1bbe1c8">More...</a><br /></td></tr>
 <tr class="separator:a74cf386822027acb2566bcffe1bbe1c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4570a109a8206865226a2c74b40d4ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#ae40e5e9008ec3d317f26cf7d5a1ffd4c">vowner_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#ab4570a109a8206865226a2c74b40d4ec">vector_Owner</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v)</td></tr>
+<tr class="separator:ab4570a109a8206865226a2c74b40d4ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee81b5e68404e6349c674eb22dd332b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#aee81b5e68404e6349c674eb22dd332b7">vector_Pos_Err</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, int position)</td></tr>
 <tr class="memdesc:aee81b5e68404e6349c674eb22dd332b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control if supplied position is out of range or <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> is empty.  <a href="#aee81b5e68404e6349c674eb22dd332b7">More...</a><br /></td></tr>
 <tr class="separator:aee81b5e68404e6349c674eb22dd332b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e27dec4fb75f3fcecd469b40ead28b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a4e27dec4fb75f3fcecd469b40ead28b7">vector_Max_capacity</a> (<a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v)</td></tr>
-<tr class="separator:a4e27dec4fb75f3fcecd469b40ead28b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dba24a7cb71dbf39a825798dbae0226"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#a5dba24a7cb71dbf39a825798dbae0226">vector_Max_capacity</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v)</td></tr>
+<tr class="separator:a5dba24a7cb71dbf39a825798dbae0226"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa214d4ebf16a51d4c628e150ab361368"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#a775532050802a635fb5f1369b4616b7b">v_stat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8c.html#aa214d4ebf16a51d4c628e150ab361368">vector_Begin</a> (const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *v, void *item)</td></tr>
 <tr class="memdesc:aa214d4ebf16a51d4c628e150ab361368"><td class="mdescLeft">&#160;</td><td class="mdescRight">Item at <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a>'s beginning.  <a href="#aa214d4ebf16a51d4c628e150ab361368">More...</a><br /></td></tr>
 <tr class="separator:aa214d4ebf16a51d4c628e150ab361368"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -363,8 +368,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa24caeb16230839f74de34ff2e6f9e2a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa24caeb16230839f74de34ff2e6f9e2a">&#9670;&nbsp;</a></span>vector_Capacity()</h2>
+<a id="ab36a64e8fcdc33fe4caa96dbe44e573e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab36a64e8fcdc33fe4caa96dbe44e573e">&#9670;&nbsp;</a></span>vector_Capacity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -372,7 +377,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int vector_Capacity </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *&#160;</td>
           <td class="paramname"><em>v</em></td><td>)</td>
           <td></td>
         </tr>
@@ -387,6 +392,32 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The capacity of the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object </dd></dl>
+
+</div>
+</div>
+<a id="a0aff612c3fd74e128c155b347d7622fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0aff612c3fd74e128c155b347d7622fd">&#9670;&nbsp;</a></span>vector_Destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void vector_Destroy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructor. Management of memory: free the data array in the <a class="el" href="structVector.html" title="A generic and dynamic container that expands automatically as elements are added. The maximum storage...">Vector</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>Pointer to vector_t type variable </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -947,8 +978,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4e27dec4fb75f3fcecd469b40ead28b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e27dec4fb75f3fcecd469b40ead28b7">&#9670;&nbsp;</a></span>vector_Max_capacity()</h2>
+<a id="a5dba24a7cb71dbf39a825798dbae0226"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dba24a7cb71dbf39a825798dbae0226">&#9670;&nbsp;</a></span>vector_Max_capacity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -956,7 +987,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int vector_Max_capacity </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *&#160;</td>
           <td class="paramname"><em>v</em></td><td>)</td>
           <td></td>
         </tr>
@@ -969,6 +1000,24 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ab4570a109a8206865226a2c74b40d4ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4570a109a8206865226a2c74b40d4ec">&#9670;&nbsp;</a></span>vector_Owner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="vector_8h.html#ae40e5e9008ec3d317f26cf7d5a1ffd4c">vowner_t</a> vector_Owner </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="vector_8h.html#ae3b91ebdcb1f574a34b8fd6868db74a9">vector_t</a> *&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

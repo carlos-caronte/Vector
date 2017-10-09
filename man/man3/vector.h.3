@@ -1,4 +1,4 @@
-.TH "src/vector.h" 3 "Sun Oct 8 2017" "Version 0.1" "Vector" \" -*- nroff -*-
+.TH "src/vector.h" 3 "Mon Oct 9 2017" "Version 0.1" "Vector" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -42,6 +42,12 @@ src/vector.h
 
 .in +1c
 .ti -1c
+.RI "typedef enum \fBV_safe\fP \fBvsafe_t\fP"
+.br
+.ti -1c
+.RI "typedef enum \fBV_owner\fP \fBvowner_t\fP"
+.br
+.ti -1c
 .RI "typedef struct \fBVector\fP \fBvector_t\fP"
 .br
 .RI "A generic and dynamic container that expands automatically as elements are added\&. The maximum storage capacity is (2^(sizeof(int) * 8 - 1)) / v->size_ele * 8 [vector_Max_capacity]\&. "
@@ -53,6 +59,12 @@ src/vector.h
 
 .in +1c
 .ti -1c
+.RI "enum \fBV_safe\fP { \fBV_UNSAFE\fP = 0, \fBV_SAFE\fP = 1 }"
+.br
+.ti -1c
+.RI "enum \fBV_owner\fP { \fBV_BORROWER\fP = 0, \fBV_OWNER\fP = 1, \fBV_SLICE\fP = 2 }"
+.br
+.ti -1c
 .RI "enum \fBV_stat\fP { \fBV_OK\fP = 0, \fBV_ERR_IS_EMPTY\fP = 1, \fBV_ERR_VALUE_NOT_FOUND\fP = 2, \fBV_ERR_OUT_OF_RANGE\fP = 3, \fBV_ERR_FILE\fP = 4, \fBV_ERR_STACK\fP = 5, \fBV_ERR_ALLOCATE_MEMORY\fP = 6, \fBV_ERR_MEMCPY\fP = 7, \fBV_ERR_MEMMOVE\fP = 8, \fBV_ERR_INVALID_ARGUMENT\fP = 9, \fBV_ERR_MAX_CAPACITY\fP = 10 }"
 .br
 .in -1c
@@ -63,7 +75,11 @@ src/vector.h
 .RI "\fBvector_t\fP * \fBvector_Init\fP (int capacity, size_t ele_size, int(*compar)(const void *, const void *))"
 .br
 .ti -1c
-.RI "int \fBvector_Capacity\fP (\fBvector_t\fP *v)"
+.RI "void \fBvector_Destroy\fP (\fBvector_t\fP *v)"
+.br
+.RI "Destructor\&. Management of memory: free the data array in the \fBVector\fP object\&. "
+.ti -1c
+.RI "int \fBvector_Capacity\fP (const \fBvector_t\fP *v)"
 .br
 .RI "Returns the capacity of the specified \fBVector\fP\&. The capacity is the maximum number of elements a \fBVector\fP can hold before it has to be resized\&. Capacity has to be greater than Zero\&. "
 .ti -1c
@@ -83,7 +99,10 @@ src/vector.h
 .br
 .RI "Control if supplied position is out of range or \fBVector\fP is empty\&. "
 .ti -1c
-.RI "int \fBvector_Max_capacity\fP (\fBvector_t\fP *v)"
+.RI "int \fBvector_Max_capacity\fP (const \fBvector_t\fP *v)"
+.br
+.ti -1c
+.RI "\fBvowner_t\fP \fBvector_Owner\fP (const \fBvector_t\fP *v)"
 .br
 .ti -1c
 .RI "\fBv_stat\fP \fBvector_Begin\fP (const \fBvector_t\fP *v, void *item)"
@@ -266,8 +285,32 @@ The library provides insertion of items from file\&.
          memory leak, neither double free..fi
 .PP
  
+.SS "typedef enum \fBV_owner\fP \fBvowner_t\fP"
+
+.SS "typedef enum \fBV_safe\fP  \fBvsafe_t\fP"
+
 .SH "Enumeration Type Documentation"
 .PP 
+.SS "enum \fBV_owner\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIV_BORROWER \fP\fP
+.TP
+\fB\fIV_OWNER \fP\fP
+.TP
+\fB\fIV_SLICE \fP\fP
+.SS "enum \fBV_safe\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIV_UNSAFE \fP\fP
+.TP
+\fB\fIV_SAFE \fP\fP
 .SS "enum \fBV_stat\fP"
 
 .PP
@@ -387,7 +430,7 @@ V_OK if \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is e
 .RE
 .PP
 
-.SS "int vector_Capacity (\fBvector_t\fP * v)"
+.SS "int vector_Capacity (const \fBvector_t\fP * v)"
 
 .PP
 Returns the capacity of the specified \fBVector\fP\&. The capacity is the maximum number of elements a \fBVector\fP can hold before it has to be resized\&. Capacity has to be greater than Zero\&. 
@@ -400,6 +443,17 @@ Returns the capacity of the specified \fBVector\fP\&. The capacity is the maximu
 \fBReturns:\fP
 .RS 4
 The capacity of the \fBVector\fP object 
+.RE
+.PP
+
+.SS "void vector_Destroy (\fBvector_t\fP * v)"
+
+.PP
+Destructor\&. Management of memory: free the data array in the \fBVector\fP object\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type variable 
 .RE
 .PP
 
@@ -639,7 +693,7 @@ V_OK or V_IS_EMPTY if the \fBVector\fP Object is empty
 .RE
 .PP
 
-.SS "int vector_Max_capacity (\fBvector_t\fP * v)"
+.SS "int vector_Max_capacity (const \fBvector_t\fP * v)"
 
 .PP
 \fBParameters:\fP
@@ -651,6 +705,8 @@ V_OK or V_IS_EMPTY if the \fBVector\fP Object is empty
 .RS 4
 .RE
 .PP
+
+.SS "\fBvowner_t\fP vector_Owner (const \fBvector_t\fP * v)"
 
 .SS "\fBv_stat\fP vector_Pattern (\fBvector_t\fP * v, const char * pattern, \fBvector_t\fP * slice)"
 

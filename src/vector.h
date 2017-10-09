@@ -40,7 +40,6 @@ typedef enum V_safe {
 typedef enum V_owner {
     V_BORROWER = 0,
     V_OWNER = 1,
-    V_SLICE = 2,
 }vowner_t;
 
 

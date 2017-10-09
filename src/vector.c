@@ -64,8 +64,6 @@ void vector_Destroy(vector_t *v) {
             v->data = NULL;
             free(v);
             break;
-        case V_SLICE:
-            free(v);
     }
  }
 
@@ -425,7 +423,6 @@ v_stat vector_Filter(vector_t *v, void *value, vector_t *slice) {
                         }
                     }
                     vector_Sort(slice);
-                    slice->owner = V_SLICE;
 
                     return V_OK;
 
@@ -543,7 +540,6 @@ v_stat vector_Pattern(vector_t *v, const char *pattern,
             }
             if (slice->len > 0) {
                 vector_Sort(slice);
-                slice->owner = V_SLICE;
 
                 return V_OK;
             } else {
@@ -589,7 +585,6 @@ vector_Slice(const vector_t *v, vector_t *slice, int from, int to ) {
                                     V_ERR_MEMMOVE);
 
         slice->len = len_slice;
-        slice->owner = V_SLICE;
 
         return V_OK;
     }

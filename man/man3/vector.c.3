@@ -1,4 +1,4 @@
-.TH "src/vector.c" 3 "Sun Oct 8 2017" "Version 0.1" "Vector" \" -*- nroff -*-
+.TH "src/vector.c" 3 "Mon Oct 9 2017" "Version 0.1" "Vector" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -21,11 +21,15 @@ src/vector.c
 
 .in +1c
 .ti -1c
+.RI "void \fBvector_Destroy\fP (\fBvector_t\fP *v)"
+.br
+.RI "Destructor\&. Management of memory: free the data array in the \fBVector\fP object\&. "
+.ti -1c
 .RI "\fBvector_t\fP * \fBvector_Init\fP (int capacity, size_t ele_size, int(*compar)(const void *a, const void *b))"
 .br
 .RI "Constructor\&. Initializes \fBVector\fP object with the given capacity\&. "
 .ti -1c
-.RI "int \fBvector_Capacity\fP (\fBvector_t\fP *v)"
+.RI "int \fBvector_Capacity\fP (const \fBvector_t\fP *v)"
 .br
 .RI "Returns the capacity of the specified \fBVector\fP\&. The capacity is the maximum number of elements a \fBVector\fP can hold before it has to be resized\&. Capacity has to be greater than Zero\&. "
 .ti -1c
@@ -41,11 +45,14 @@ src/vector.c
 .br
 .RI "Returns the number of elements in the \fBVector\fP, the \fBVector\fP's length\&. "
 .ti -1c
+.RI "\fBvowner_t\fP \fBvector_Owner\fP (const \fBvector_t\fP *v)"
+.br
+.ti -1c
 .RI "\fBv_stat\fP \fBvector_Pos_Err\fP (const \fBvector_t\fP *v, int position)"
 .br
 .RI "Control if supplied position is out of range or \fBVector\fP is empty\&. "
 .ti -1c
-.RI "int \fBvector_Max_capacity\fP (\fBvector_t\fP *v)"
+.RI "int \fBvector_Max_capacity\fP (const \fBvector_t\fP *v)"
 .br
 .ti -1c
 .RI "\fBv_stat\fP \fBvector_Begin\fP (const \fBvector_t\fP *v, void *item)"
@@ -227,7 +234,7 @@ V_OK if \fBVector\fP is not empty V_ERR_IS_EMPTY if the \fBVector\fP Object is e
 .RE
 .PP
 
-.SS "int vector_Capacity (\fBvector_t\fP * v)"
+.SS "int vector_Capacity (const \fBvector_t\fP * v)"
 
 .PP
 Returns the capacity of the specified \fBVector\fP\&. The capacity is the maximum number of elements a \fBVector\fP can hold before it has to be resized\&. Capacity has to be greater than Zero\&. 
@@ -240,6 +247,17 @@ Returns the capacity of the specified \fBVector\fP\&. The capacity is the maximu
 \fBReturns:\fP
 .RS 4
 The capacity of the \fBVector\fP object 
+.RE
+.PP
+
+.SS "void vector_Destroy (\fBvector_t\fP * v)"
+
+.PP
+Destructor\&. Management of memory: free the data array in the \fBVector\fP object\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIv\fP Pointer to vector_t type variable 
 .RE
 .PP
 
@@ -497,7 +515,7 @@ V_OK or V_IS_EMPTY if the \fBVector\fP Object is empty
 .RE
 .PP
 
-.SS "int vector_Max_capacity (\fBvector_t\fP * v)"
+.SS "int vector_Max_capacity (const \fBvector_t\fP * v)"
 
 .PP
 \fBParameters:\fP
@@ -509,6 +527,8 @@ V_OK or V_IS_EMPTY if the \fBVector\fP Object is empty
 .RS 4
 .RE
 .PP
+
+.SS "\fBvowner_t\fP vector_Owner (const \fBvector_t\fP * v)"
 
 .SS "\fBv_stat\fP vector_Pattern (\fBvector_t\fP * v, const char * pattern, \fBvector_t\fP * slice)"
 
