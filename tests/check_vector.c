@@ -80,8 +80,8 @@ START_TEST(int_vector)
                 ck_assert_int_eq(value_slice, value_v);
         }
 
-        v->Destroy(v);
-        slice->Destroy(slice);
+        vector_Destroy(v);
+        vector_Destroy(slice);
 }
 
 END_TEST
@@ -121,7 +121,7 @@ START_TEST(float_vector)
             v_item1 = v_item2;
         }
 
-        v->Destroy(v);
+        vector_Destroy(v);
 }
 
 END_TEST
@@ -162,7 +162,7 @@ START_TEST(string_vector)
                 ck_assert_int_eq(x, i - (i / mod));
         }
 
-        v->Destroy(v);
+        vector_Destroy(v);
 
         for (i = 0; i < n; i++) {
                 free(a[i]);

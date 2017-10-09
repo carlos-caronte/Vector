@@ -267,6 +267,9 @@ int main()
                                 printf("Invalidd arguments\n");
                                 break;
         }
+        // They are slice thus the library does not free the pointers to heap
+        vector_Destroy(searched);
+        vector_Destroy(s_pattern);
 
         /*
          *                    Remove records with patterns
@@ -292,9 +295,7 @@ int main()
         free(structs);
 
         // The library free their pointers to HEAP
-        struc->Destroy(struc);
-        searched->Destroy_slice(searched);
-        s_pattern->Destroy_slice(s_pattern);
+        vector_Destroy(struc);
 
         return 0;
 }

@@ -80,7 +80,7 @@ int main()
         }
         // Each record read from the file is a pointer to Heap. This function
         // clean up the memory.
-        v_file->Destroy_pointer(v_file);
+        vector_Destroy(v_file);
 
         return 0;
 }

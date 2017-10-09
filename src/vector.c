@@ -42,42 +42,32 @@
  * @param v     Pointer to vector_t type variable
  *
  */
-static void vector_Destroy(vector_t *v) {
-
-    free(v->data);
-    v->data = NULL;
-    free(v);
-}
-
-
-/**
- * @brief           Destructor. Management of memory: free the data array
- *                      in the Vector object and pointers that the library has
- *                      created.  To use with the function vector_Insert_from_file.
- * @param v     Pointer to vector_t type variable
- *
- */
-static void vector_Destroy_pointer(vector_t *v) {
+void vector_Destroy(vector_t *v) {
 
     int len = vector_Len(v);
-    for (int i = 0; i < len; i++) {
-        void *tmp;
-        vector_Item(v, &tmp, i);
-        free(tmp);
+    vowner_t owner = vector_Owner(v);
+
+    switch (owner){
+        case V_OWNER:
+            for (int i = 0; i < len; i++) {
+                void *tmp;
+                vector_Item(v, &tmp, i);
+                free(tmp);
+                tmp = NULL;
+            }
+            free(v->data);
+            v->data = NULL;
+            free(v);
+            break;
+        case V_BORROWER:
+            free(v->data);
+            v->data = NULL;
+            free(v);
+            break;
+        case V_SLICE:
+            free(v);
     }
-    vector_Destroy(v);
-}
-
-
-/**
- * @brief           Destructor. Management of memory: free the data array
- *                      in the Vector object.
- * @param v     Pointer to vector_t type variable
- *
- */
-static void vector_Destroy_slice(vector_t *v) {
-    free(v);
-}
+ }
 
 
 /**
@@ -105,18 +95,15 @@ vector_t * vector_Init(int capacity, size_t ele_size,
      v->len = 0;
      v->capacity = capacity;
      v->ele_size = ele_size;
+     v->safe = V_SAFE;
+     v->owner = V_BORROWER;
      v->compar = compar;
      v->data = calloc(v->capacity, ele_size);
      // If memory error, exit,,,
      v_assert(v->data, V_ERR_ALLOCATE_MEMORY);
 
-     v->Destroy = vector_Destroy;
-     v->Destroy_pointer = vector_Destroy_pointer;
-     v->Destroy_slice = vector_Destroy_slice;
-
     return v;
 }
-
 
 
 /***************************************************************
@@ -136,7 +123,7 @@ vector_t * vector_Init(int capacity, size_t ele_size,
  *
  *
  */
-int vector_Capacity(vector_t *v)
+int vector_Capacity(const vector_t *v)
 {
     return v->capacity;
 }
@@ -159,6 +146,7 @@ bool vector_isEquals(const vector_t *v1, const vector_t *v2) {
   return memcmp(v1->data, v2->data, v1->ele_size) == 0;
 }
 
+
 /**
  * @brief           Returns True if Vector is Empty, that is when its length
  *                      is equal to Zero
@@ -172,6 +160,35 @@ bool vector_isEmpty(const vector_t  *v) {
 
 
 /**
+ * @brief
+ * @param v
+ * @param item
+ * @returns
+ *
+ *
+ */
+static bool vector_Heap(const vector_t *v, void *item) {
+
+    long long t_v = (long long) v;
+    long long t_item = (long long) item;
+    size_t i;
+    size_t tam = sizeof(long long);
+    unsigned long long k = 1 << (tam * 8 - 1);
+
+    for (i = 0; i < 24; i++) {
+
+        if (((t_v & (k >> i)) == (k >> i)) !=
+            ((t_item & (k >> i)) == (k >> i)))
+
+            return false;
+    }
+
+    return true;
+
+}
+
+
+/**
  * @brief           Returns the number of elements in the Vector,
  *                      the Vector's length
  * @param v     Pointer to vector_t type
@@ -181,6 +198,11 @@ bool vector_isEmpty(const vector_t  *v) {
 int vector_Len(const vector_t *v) {
 
     return v->len;
+}
+
+
+vowner_t vector_Owner(const vector_t *v) {
+    return v->owner;
 }
 
 
@@ -220,7 +242,7 @@ v_stat vector_Pos_Err(const vector_t *v, int position) {
  *
  *
  */
-int vector_Max_capacity(vector_t *v) {
+int vector_Max_capacity(const vector_t *v) {
     unsigned k = 1 << (sizeof(int) * 8 - 1);
     int m = v->ele_size * 8;
     return (k - 1) / m;
@@ -403,6 +425,8 @@ v_stat vector_Filter(vector_t *v, void *value, vector_t *slice) {
                         }
                     }
                     vector_Sort(slice);
+                    slice->owner = V_SLICE;
+
                     return V_OK;
 
                 }  else if (compar > 0)
@@ -519,6 +543,8 @@ v_stat vector_Pattern(vector_t *v, const char *pattern,
             }
             if (slice->len > 0) {
                 vector_Sort(slice);
+                slice->owner = V_SLICE;
+
                 return V_OK;
             } else {
                     return V_ERR_VALUE_NOT_FOUND;
@@ -563,38 +589,12 @@ vector_Slice(const vector_t *v, vector_t *slice, int from, int to ) {
                                     V_ERR_MEMMOVE);
 
         slice->len = len_slice;
+        slice->owner = V_SLICE;
 
         return V_OK;
     }
 }
 
-/**
- * @brief
- * @param v
- * @param item
- * @returns
- *
- *
- */
-static bool vector_Heap(vector_t *v, void *item) {
-
-    long long t_v = (long long) v;
-    long long t_item = (long long) item;
-    size_t i;
-    size_t tam = sizeof(long long);
-    unsigned long long k = 1 << (tam * 8 - 1);
-
-    for (i = 0; i < 24; i++) {
-
-        if (((t_v & (k >> i)) == (k >> i)) !=
-            ((t_item & (k >> i)) == (k >> i)))
-
-            return false;
-    }
-
-    return true;
-
-}
 
 
 /***************************************************************
@@ -699,6 +699,8 @@ v_stat vector_Insert_from_file(vector_t *v, const char *filename,
             return V_ERR_FILE;
 
         } else{
+
+            v->owner = V_OWNER;
 
            size_t pos, length, len;
 

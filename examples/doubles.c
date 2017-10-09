@@ -88,7 +88,7 @@ int main()
         free(f);
 
         // The library free its pointers to HEAP
-        v->Destroy(v);
+        vector_Destroy(v);
 
         return 0;
 }

@@ -30,6 +30,20 @@
 
 #define MALLOC_CHECK_ 2
 
+
+
+typedef enum V_safe {
+    V_UNSAFE = 0,
+    V_SAFE = 1,
+} vsafe_t;
+
+typedef enum V_owner {
+    V_BORROWER = 0,
+    V_OWNER = 1,
+    V_SLICE = 2,
+}vowner_t;
+
+
 /**
  * @brief     A generic and dynamic container that expands automatically
  *              as elements are added. The maximum storage capacity is
@@ -119,15 +133,11 @@ typedef struct Vector{
                                  many bytes to replicate behind the scenes with
                                  every call to manage data.*/
 
+        vsafe_t safe;
+        vowner_t owner;
+
         int (*compar)(const void *, const void *); /**<
                                 Comparing Function pointer*/
-        void(*Destroy)(struct Vector *v);/**<Destructor*/
-        void(*Destroy_pointer)(struct Vector *v);/**<Destructor to use
-                                with the function vector_Insert_from_file. It frees
-                                the pointers created and then it calls Destroy**/
-
-        void(*Destroy_slice)(struct Vector *v);/**<Destructor*/
-
 
 } vector_t;
 
@@ -145,6 +155,7 @@ typedef enum V_stat {
     V_ERR_INVALID_ARGUMENT = 9,
     V_ERR_MAX_CAPACITY = 10,
 }v_stat;
+
 
 /**
  * @brief   Accuracy of 6 decimals for sort function double and float.
@@ -180,10 +191,8 @@ typedef enum V_stat {
  * *************************************************************/
 vector_t * vector_Init(int  capacity, size_t ele_size,
                                   int (*compar)(const void *, const void *));
-static void vector_Destroy(vector_t *v);
-static void vector_Destroy_pointer(vector_t *v);
-static void vector_Destroy_slice(vector_t *v);
 
+void vector_Destroy(vector_t *v);
 
 
 /***************************************************************
@@ -191,13 +200,14 @@ static void vector_Destroy_slice(vector_t *v);
  *                                  Informative Methods
  *
  * *************************************************************/
-int vector_Capacity(vector_t *v);
+int vector_Capacity(const vector_t *v);
 bool vector_isEquals(const vector_t *v1, const vector_t *v2);
 bool vector_isEmpty(const vector_t  *v);
 int vector_Len(const vector_t *v);
 v_stat vector_Pos_Err(const vector_t *v, int position);
-static bool vector_stack(vector_t *v, void *item);
-int vector_Max_capacity(vector_t *v);
+static bool vector_Heap(const vector_t *v, void *item);
+int vector_Max_capacity(const vector_t *v);
+vowner_t vector_Owner(const vector_t *v);
 
 /***************************************************************
  *
